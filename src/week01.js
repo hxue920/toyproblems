@@ -50,3 +50,19 @@ function onlyUnique (str) {
   return strArr.join("");
 
 }
+
+function getPonyAllergies (ponies, ownerEmail) {
+  // Write your code here, and
+  // return your final answer.
+  return ponies.filter(function(obj) {
+    return getProp("email")(obj) === ownerEmail;
+  }).map(function(obj) {
+    return obj["allergies"];
+  }).concatAll().sort().reduce(function(accu, curr) {
+    if (accu.includes(curr)) {
+      return accu;
+    }
+    accu.push(curr);
+    return accu;
+  },[]);
+}
