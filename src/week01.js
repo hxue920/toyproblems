@@ -26,4 +26,27 @@ function nestedWordCount (wordList) {
   return listArr[0][0];
 }
 
-console.log(nestedWordCount([ "gray", "grays", "ray", "rays", "strays" ]));
+function onlyUnique (str) {
+  // Write your code here, and
+  // return your final answer.
+  var strObj = {};
+  var strArr = str.split("");
+  strArr.forEach(function(char) {
+    if (strObj[char] === undefined) {
+      strObj[char] = 0;
+    }
+    strObj[char] += 1;
+  });
+  console.log(strObj);
+  for (var i = 0; i < str.length; i++) {
+    if (strObj[str[i]] > 1) {
+      strArr.forEach(function(item, index) {
+        if (item === str[i]) {
+          strArr.splice(index, 1);
+        }
+      })
+    }
+  }
+  return strArr.join("");
+
+}
