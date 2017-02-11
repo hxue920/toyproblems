@@ -123,11 +123,16 @@ Tree.prototype.addChild = function(child){
 
 Tree.prototype.getClosestCommonAncestor = function(){
   // TODO: implement me!
-  // var result;
-  // var args = Array.prototype.slice.call(arguments);
-  // for (var i = 0; i < args.length; i++) {
-  //   if ()
-  // }
+  path1 = this.getAncestorPath(arguments[0]);
+  path2 = this.getAncestorPath(arguments[1]);
+  if (path1===null || path2===null) {
+    return null
+  }
+  for (var i = Math.min(path1.length-1, path2.length-1); i >= 0; i--) {
+    if (path2.includes(path1[i])) {
+      return path1[i];
+    }
+  }
 }
 
 Tree.prototype.getAncestorPath = function(target){
