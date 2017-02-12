@@ -196,3 +196,9 @@ Tree.prototype.removeChild = function(child){
     throw new Error("That node is not an immediate child of this tree");
   }
 };
+
+function longestPalindrome (string) {
+  // Write your code here, and
+  // return your final answer.
+
+}
