@@ -198,9 +198,25 @@ Tree.prototype.removeChild = function(child){
 };
 
 function longestPalindrome (string) {
-  // Write your code here, and
-  // return your final answer.
+  var maxPalindrome = "";
+  function isPalindrome (left, right) {
+    while(string[left]>=0 && string[right]<string.length && string[left] === string[right]) {
+      left -= 1;
+      right += 1;
+    }
+  return string.slice(left+1, right);
+  }
 
+  for (var i = 0; i < string.length; i++) {
+    var oddPalindrome = isPalindrome(i-1, i+1);
+    var evenPalindrome = isPalindrome(i, i+1);
 
-
+    if (oddPalindrome.length > maxPalindrome.length) {
+      maxPalindrome = oddPalindrome;
+    }
+    if (evenPalindrome.length > maxPalindrome.length) {
+      maxPalindrome = evenPalindrome;
+    }
+  }
+  return maxPalindrome;
 }
