@@ -199,8 +199,9 @@ Tree.prototype.removeChild = function(child){
 
 function longestPalindrome (string) {
   var maxPalindrome = "";
+  // var length = string.length;
   function isPalindrome (left, right) {
-    while(string[left]>=0 && string[right]<string.length && string[left] === string[right]) {
+    while(left>=0 && right<string.length && string[left] === string[right]) {
       left -= 1;
       right += 1;
     }
@@ -209,8 +210,9 @@ function longestPalindrome (string) {
 
   for (var i = 0; i < string.length; i++) {
     var oddPalindrome = isPalindrome(i-1, i+1);
+    console.log(oddPalindrome);
     var evenPalindrome = isPalindrome(i, i+1);
-
+    console.log(evenPalindrome);
     if (oddPalindrome.length > maxPalindrome.length) {
       maxPalindrome = oddPalindrome;
     }
@@ -220,3 +222,5 @@ function longestPalindrome (string) {
   }
   return maxPalindrome;
 }
+
+console.log(longestPalindrome("My dad is a racecar athlete"));
