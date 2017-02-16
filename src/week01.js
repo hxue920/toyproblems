@@ -223,4 +223,8 @@ function longestPalindrome (string) {
   return maxPalindrome;
 }
 
-console.log(longestPalindrome("My dad is a racecar athlete"));
+function numberToEnglish (number) {
+  // Write your code here, and
+  // return your final answer.
+  //loop through
+}
