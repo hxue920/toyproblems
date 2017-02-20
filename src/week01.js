@@ -227,5 +227,6 @@ function numberToEnglish (number) {
   // Write your code here, and
   // return your final answer.
   //loop through
-  var num = {}
+  var num = {};
+  var words = {};
 }
