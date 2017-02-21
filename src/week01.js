@@ -228,5 +228,4 @@ function numberToEnglish (number) {
   // return your final answer.
   //loop through
   var num = {};
-  var words = {};
 }
