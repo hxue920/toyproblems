@@ -4,30 +4,27 @@ var encode = function(str) {
   //enter function
   var position = 0;
   var strArr = str.split("");
-  var firstChar = strArr.shift();
-  if (charObj[firstChar.toUpperCase()]) {
-    position = charObj[firstChar.toUpperCase()];
-  }
-  var result = strArr.map(function(char) {
+  var firstAlpha = false;
+  var results = strArr.map(function(char) {
     if (charObj[char.toUpperCase()]) {
-      if (position > 0) {
-        var move = charObj[char.toUpperCase()] + position > 26 ? charObj[char.toUpperCase()] + position - 26 : charObj[char.toUpperCase()] + position;
-        console.log(move);
-        for (key in charObj) {
+      if (!firstAlpha) {
+        firstAlpha = true;
+        position = charObj[char.toUpperCase()];
+        return char.toUpperCase();
+      }
+      var move = charObj[char.toUpperCase()] + position > 26 ? charObj[char.toUpperCase()] + position - 26 : charObj[char.toUpperCase()] + position;
+      for (key in charObj) {
           if (charObj[key] === move) {
+            position = charObj[char.toUpperCase()];
             char = key;
-            position = charObj[key];
           }
-        }
       }
     }
-    // console.log(position);
     return char;
-  })
-  result.unshift(firstChar);
-  result = result.join("");
-  console.log(result);
-  return result;
+  });
+
+  results = results.join("");
+  return results;
 }
 
 var decode = function() {
