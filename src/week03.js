@@ -53,3 +53,7 @@ var decode = function() {
   results = results.join("");
   return results;
 }
+
+function descendingOrder(n){
+  //...
+}
