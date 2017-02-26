@@ -55,5 +55,5 @@ var decode = function() {
 }
 
 function descendingOrder(n){
-  //...
+  return parseInt(n.toString().split("").sort(function(a,b) {return b - a}).join(""));
 }
