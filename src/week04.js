@@ -8,3 +8,9 @@ var countBits = function(n) {
   });
   return count;
 };
+
+class SmallestIntegerFinder {
+  findSmallestInt(args) {
+      return args.sort(function(a,b){return b - a}).pop();
+  }
+}
