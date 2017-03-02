@@ -27,7 +27,7 @@ var encode = function(str) {
   return results;
 }
 
-var decode = function() {
+var decode = function(str) {
   //enter function
   var position = 0;
   var strArr = str.split("");
@@ -39,7 +39,7 @@ var decode = function() {
         position = charObj[char.toUpperCase()];
         return char.toUpperCase();
       }
-      var move = charObj[char.toUpperCase()] - position < 0 ? 26 + charObj[char.toUpperCase()] - position : charObj[char.toUpperCase()] - position;
+      var move = charObj[char.toUpperCase()] - position <= 0 ? 26 + charObj[char.toUpperCase()] - position : charObj[char.toUpperCase()] - position;
       for (key in charObj) {
           if (charObj[key] === move) {
             char = key;
@@ -53,7 +53,7 @@ var decode = function() {
   results = results.join("");
   return results;
 }
-
+console.log(decode('TBM VLDLN MTGLK TUM HEHCI HKAW LBM QMAY CSV.'));
 function descendingOrder(n){
   return parseInt(n.toString().split("").sort(function(a,b) {return b - a}).join(""));
 }
