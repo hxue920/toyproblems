@@ -53,7 +53,17 @@ var decode = function(str) {
   results = results.join("");
   return results;
 }
-console.log(decode('TBM VLDLN MTGLK TUM HEHCI HKAW LBM QMAY CSV.'));
+
 function descendingOrder(n){
   return parseInt(n.toString().split("").sort(function(a,b) {return b - a}).join(""));
 }
+
+function lottery(str){
+   //your code is here...
+   return str.match(/\d/g) === null ? "One more run!" : str.match(/\d/g).reduce(function(prev, curr){
+      console.log(prev);
+      return prev.includes(curr) ? prev : prev.concat(curr);
+    }, "");
+
+}
+
