@@ -46,3 +46,35 @@ function pigIt(str){
 function comp(array1, array2){
   return !array1 || !array2 ? false : JSON.stringify(array1.sort(function(a,b) {return a - b})) === JSON.stringify(array2.map(function(ele) {return Math.sqrt(ele)}).sort(function(a,b) {return a - b}))
 }
+
+function tripledouble(num1, num2) {
+  var obj1 = {};
+  var obj2 = {};
+  console.log(num1, num2);
+  var arr1 = num1.toString().match(/(.)\1{2,}/);
+  var arr2 = num2.toString().match(/(.)\1{1,}/)
+  console.log(arr1);
+  console.log(arr2);
+  num1.toString().split("").forEach(function(char) {
+    if (!obj1[char]) {
+      obj1[char] = 0;
+    }
+    obj1[char]+=1;
+  });
+  console.log(obj1);
+  num2.toString().split("").forEach(function(char) {
+    if (!obj2[char]) {
+      obj2[char] = 0;
+    }
+    obj2[char]+=1;
+  });
+  console.log(obj2);
+  for (key in obj1) {
+    if (obj1[key] === 3) {
+      if (obj2[key] === 2) {
+        return 1;
+      }
+    }
+  }
+  return 0;
+}
