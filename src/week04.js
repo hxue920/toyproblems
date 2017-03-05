@@ -77,4 +77,54 @@ function tripledouble(num1, num2) {
     }
   }
   return 0;
+
+  var arr1 = num1.toString().split("");
+  var arr2 = num2.toString().split("");
+  // console.log(arr1);
+  var resultArr1 = [];
+  var resultArr2 = [];
+  var tempStr1 = "";
+  var tempStr2 = "";
+  for (var i = 0; i < arr1.length; i++) {
+
+    if (arr1[i] === arr1[i+1] || arr1[i] === arr1[i-1]) {
+      if (tempStr1 === "") {
+        tempStr1 += arr1[i];
+      } else if (tempStr1.includes(arr1[i])) {
+        tempStr1 += arr1[i];
+        if (tempStr1.length>=3 || !arr1[i+1]) {
+          resultArr1.push(tempStr1);
+          tempStr1 = arr1[i];
+        }
+      } else if (!tempStr1.includes(arr1[i])) {
+        if (tempStr1.length >= 3) {
+          resultArr1.push(tempStr1);
+          tempStr1 = arr1[i];
+        }
+      }
+    }
+
+  }
+  for (var i = 0; i < arr2.length; i++) {
+
+    if (arr2[i] === arr2[i+1] || arr2[i] === arr2[i-1]) {
+      if (tempStr2 === "") {
+        tempStr2 += arr2[i];
+      } else if (tempStr2.includes(arr2[i])) {
+        tempStr2 += arr2[i];
+        if (tempStr2.length>=2 && !arr2[i+1]) {
+          resultArr2.push(tempStr2);
+          tempStr2 = arr2[i];
+        }
+      } else if (!tempStr2.includes(arr2[i])) {
+        if (tempStr2.length >= 2) {
+          resultArr2.push(tempStr2);
+          tempStr2 = arr2[i];
+        }
+      }
+    }
+
+  }
+  console.log(resultArr1);
+  console.log(resultArr2);
 }
