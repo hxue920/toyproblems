@@ -93,8 +93,11 @@ function tripledouble(num1, num2) {
       } else if (tempStr1.includes(arr1[i])) {
         tempStr1 += arr1[i];
         if (tempStr1.length>=3 || !arr1[i+1]) {
-          resultArr1.push(tempStr1);
-          tempStr1 = arr1[i];
+          if (arr1[i] !== arr1[i+1]) {
+            resultArr1.push(tempStr1);
+            tempStr1 = arr1[i];
+          }
+
         }
       } else if (!tempStr1.includes(arr1[i])) {
         if (tempStr1.length >= 3) {
@@ -102,6 +105,8 @@ function tripledouble(num1, num2) {
           tempStr1 = arr1[i];
         }
       }
+    } else {
+      tempStr1 = "";
     }
 
   }
@@ -112,9 +117,11 @@ function tripledouble(num1, num2) {
         tempStr2 += arr2[i];
       } else if (tempStr2.includes(arr2[i])) {
         tempStr2 += arr2[i];
-        if (tempStr2.length>=2 && !arr2[i+1]) {
-          resultArr2.push(tempStr2);
-          tempStr2 = arr2[i];
+        if (tempStr2.length>=2 || !arr2[i+1]) {
+          if (arr2[i] !== arr2[i+1]) {
+            resultArr2.push(tempStr2);
+            tempStr2 = arr2[i];
+          }
         }
       } else if (!tempStr2.includes(arr2[i])) {
         if (tempStr2.length >= 2) {
@@ -122,6 +129,8 @@ function tripledouble(num1, num2) {
           tempStr2 = arr2[i];
         }
       }
+    } else {
+      tempStr2 = "";
     }
 
   }
