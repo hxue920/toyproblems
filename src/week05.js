@@ -14,7 +14,6 @@ function add(n){
 function humanReadable(seconds) {
   // TODO
   var leftover = seconds;
-  var reminder, sec, min, hour;
   var arr = [60,60,100];
   for (var i = 0; i < arr.length; i++) {
     if (leftover >= arr[i]) {
@@ -26,7 +25,14 @@ function humanReadable(seconds) {
       leftover = 0;
     }
   }
-  return arr;
+  var result = arr.reverse().map(function(ele) {
+    if (ele > 99) {
+      return "99";
+    } else if (ele > 9) {
+      return ele.toString();
+    } else {
+      return "0" + ele;
+    }
+  }).join(":");
+  return result;
 }
-
-console.log(humanReadable(60));
