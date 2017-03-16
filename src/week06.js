@@ -16,3 +16,33 @@ function compare(ele1, ele2) {
     return -1;
   }
 }
+
+function assert(expectedBehavior, descriptionOfCorrectBehavior) {
+  if (!expectedBehavior) {
+    console.log(descriptionOfCorrectBehavior);
+  } else {
+    console.log('test passed');
+  }
+}
+
+function testArrayEquality(array1, array2) {
+  if (array1.length !== array2.length) {
+    return false;
+  }
+  for (var i = 0; i < array1.length; i++) {
+    if (array1[i] !== array2[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+var first = [1, 2, 3, 4, 5];
+var second = [1, 2, 3, 4, 5];
+var third = [1, 9, 2, 4, 6];
+var fourth = [1, 2, 3, 4, 5, 6];
+
+
+assert(testArrayEquality(first, second) === true, 'it should return true when inputs are equivalent');
+assert(testArrayEquality(first, third) === false, 'it should return false when inputs are different');
+assert(testArrayEquality(first, fourth) === false, 'it should return false when inputs are different');
