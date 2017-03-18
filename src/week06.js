@@ -36,13 +36,3 @@ function testArrayEquality(array1, array2) {
   }
   return true;
 }
-
-var first = [1, 2, 3, 4, 5];
-var second = [1, 2, 3, 4, 5];
-var third = [1, 9, 2, 4, 6];
-var fourth = [1, 2, 3, 4, 5, 6];
-
-
-assert(testArrayEquality(first, second) === true, 'it should return true when inputs are equivalent');
-assert(testArrayEquality(first, third) === false, 'it should return false when inputs are different');
-assert(testArrayEquality(first, fourth) === false, 'it should return false when inputs are different');
