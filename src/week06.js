@@ -37,4 +37,4 @@ function testArrayEquality(array1, array2) {
   return true;
 }
 
-Strings Mix
+StringsMix
