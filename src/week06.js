@@ -37,4 +37,6 @@ function testArrayEquality(array1, array2) {
   return true;
 }
 
-StringsMix
+Strings Mix
+
+Palindrome chain length
