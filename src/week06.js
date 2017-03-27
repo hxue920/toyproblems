@@ -39,6 +39,9 @@ function testArrayEquality(array1, array2) {
 
 Strings Mix
 
+
+
 Palindrome chain length
+
 
 Convert string to camel case
