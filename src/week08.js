@@ -34,4 +34,24 @@ snail = function(array) {
   return result;
 }
 
-Secret knock
+// Secret knock
+
+var sum_pairs=function(ints, s){
+   var storage = [];
+   for (var i = 0; i < ints.length; i++) {
+      for (var j = i+1; j < ints.length; j++) {
+        if (ints[i] + ints[j] === s) {
+          storage.push([i,j]);
+        }
+      }
+   }
+   if (storage.length === 0) {
+     return;
+   }
+   storage.sort(function(a, b) {
+     return a[1] - b[1];
+   });
+   return [ints[storage[0][0]], ints[storage[0][1]]];
+}
+
+console.log(sum_pairs([20, -13, 40], -7));
