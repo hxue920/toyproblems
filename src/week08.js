@@ -80,29 +80,31 @@ var sum_pairs=function(ints, s){
    // return result;
    var storage = {};
    var result;
-   ints.forEach(function (num, idx) {
-      if (!storage[num]) {
-        storage[num] = idx;
-      }
-   })
-   for (var i = 0; i < ints.length; i++) {
-    delete storage[ints[i].toString()];
-    var temp = storage[(s-ints[i]).toString()];
+   // ints.forEach(function (num, idx) {
+   //    if (!storage[num]) {
+   //      storage[num] = [idx];
+   //    } else {
+   //      storage[num].push(idx);
+   //    }
+   // })
+   // for (var i = 0; i < ints.length; i++) {
+   //  storage[ints[i].toString()].shift();
+   //  var temp = storage[(s-ints[i]).toString()];
 
 
-    if (temp) {
-      if (result) {
-        if (result[1] > temp) {
-          result = [i, temp];
-          delete storage[(s-ints[i]).toString()];
-        }
-      } else {
-        result = [i, temp];
-      }
-    }
-   }
+   //  if (temp) {
+   //    if (result) {
+   //      if (result[1] > temp) {
+   //        result = [i, temp];
+   //        delete storage[(s-ints[i]).toString()];
+   //      }
+   //    } else {
+   //      result = [i, temp];
+   //    }
+   //  }
+   // }
 
-   return result ? [ints[result[0]], ints[result[1]]] : result;
+   // return result ? [ints[result[0]], ints[result[1]]] : result;
 }
 
 console.log(sum_pairs([1, -2, 3, 0, -6, 1], -6));
