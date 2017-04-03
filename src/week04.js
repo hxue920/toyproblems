@@ -48,24 +48,37 @@ function comp(array1, array2){
 }
 
 function tripledouble(num1, num2) {
-  var storage = {};
-  var numStr = num1.toString();
-  var char = numStr[0];
-  var count = 1;
-  var i = 1;
-  while (i < numStr.length) {
-    if (numStr[i] === char) {
-      count += 1;
-    } else {
-      if (count > 2) {
-        storage[char] = count;
-        char = numStr[i];
-        count = 1;
-      }
+  var storage1 = [];
+  var storage2 = [];
+  var numStr1 = num1.toString();
+  var numStr2 = num2.toString();
+  var result = 0;
+
+  fillStorage(numStr1, 2, storage1);
+  fillStorage(numStr2, 1, storage2);
+  console.log(storage1, storage2);
+  storage1.forEach(function(ele) {
+    if (storage2.includes(ele)) {
+      result = 1;
     }
-    i+=1;
-  }
-  console.log(storage);
+  })
+  return result;
 }
 
-tripledouble(444451999277);
+function fillStorage(str, limit, storage) {
+  var count = 1;
+  var char = str[0];
+  var idx = 1
+  while (idx <= str.length) {
+    if (str[idx] === char) {
+      count += 1;
+    } else {
+      if (count > limit) {
+        storage.push(char);
+      }
+      count = 1;
+      char = str[idx];
+    }
+    idx += 1;
+  }
+}
