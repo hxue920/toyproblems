@@ -48,92 +48,24 @@ function comp(array1, array2){
 }
 
 function tripledouble(num1, num2) {
-  var obj1 = {};
-  var obj2 = {};
-  console.log(num1, num2);
-  var arr1 = num1.toString().match(/(.)\1{2,}/);
-  var arr2 = num2.toString().match(/(.)\1{1,}/)
-  console.log(arr1);
-  console.log(arr2);
-  num1.toString().split("").forEach(function(char) {
-    if (!obj1[char]) {
-      obj1[char] = 0;
-    }
-    obj1[char]+=1;
-  });
-  console.log(obj1);
-  num2.toString().split("").forEach(function(char) {
-    if (!obj2[char]) {
-      obj2[char] = 0;
-    }
-    obj2[char]+=1;
-  });
-  console.log(obj2);
-  for (key in obj1) {
-    if (obj1[key] === 3) {
-      if (obj2[key] === 2) {
-        return 1;
-      }
-    }
-  }
-  return 0;
-
-  var arr1 = num1.toString().split("");
-  var arr2 = num2.toString().split("");
-  // console.log(arr1);
-  var resultArr1 = [];
-  var resultArr2 = [];
-  var tempStr1 = "";
-  var tempStr2 = "";
-  for (var i = 0; i < arr1.length; i++) {
-
-    if (arr1[i] === arr1[i+1] || arr1[i] === arr1[i-1]) {
-      if (tempStr1 === "") {
-        tempStr1 += arr1[i];
-      } else if (tempStr1.includes(arr1[i])) {
-        tempStr1 += arr1[i];
-        if (tempStr1.length>=3 || !arr1[i+1]) {
-          if (arr1[i] !== arr1[i+1]) {
-            resultArr1.push(tempStr1);
-            tempStr1 = arr1[i];
-          }
-
-        }
-      } else if (!tempStr1.includes(arr1[i])) {
-        if (tempStr1.length >= 3) {
-          resultArr1.push(tempStr1);
-          tempStr1 = arr1[i];
-        }
-      }
+  var storage = {};
+  var numStr = num1.toString();
+  var char = numStr[0];
+  var count = 1;
+  var i = 1;
+  while (i < numStr.length) {
+    if (numStr[i] === char) {
+      count += 1;
     } else {
-      tempStr1 = "";
-    }
-
-  }
-  for (var i = 0; i < arr2.length; i++) {
-
-    if (arr2[i] === arr2[i+1] || arr2[i] === arr2[i-1]) {
-      if (tempStr2 === "") {
-        tempStr2 += arr2[i];
-      } else if (tempStr2.includes(arr2[i])) {
-        tempStr2 += arr2[i];
-        if (tempStr2.length>=2 || !arr2[i+1]) {
-          if (arr2[i] !== arr2[i+1]) {
-            resultArr2.push(tempStr2);
-            tempStr2 = arr2[i];
-          }
-        }
-      } else if (!tempStr2.includes(arr2[i])) {
-        if (tempStr2.length >= 2) {
-          resultArr2.push(tempStr2);
-          tempStr2 = arr2[i];
-        }
+      if (count > 2) {
+        storage[char] = count;
+        char = numStr[i];
+        count = 1;
       }
-    } else {
-      tempStr2 = "";
     }
-
+    i+=1;
   }
-  console.log(resultArr1);
-  console.log(resultArr2);
+  console.log(storage);
 }
+
+tripledouble(444451999277);
