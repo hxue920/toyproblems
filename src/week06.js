@@ -54,32 +54,38 @@ function mix(s1, s2) {
     if (obj1[key] > 1) {
       if (obj2[key]) {
         if (obj1[key] > obj2[key]) {
-          arr.push([key, obj1[key], '1:']);
+          arr.push([key, obj1[key], '1:', 1]);
         } else if (obj1[key] < obj2[key]) {
-          arr.push([key, obj2[key], '2:']);
+          arr.push([key, obj2[key], '2:', 2]);
         } else {
-          arr.push([key, obj1[key], '=:']);
+          arr.push([key, obj1[key], '=:', 3]);
         }
         delete obj1[key];
         delete obj2[key];
       } else {
-        arr.push([key, obj1[key], '1:']);
+        arr.push([key, obj1[key], '1:', 1]);
         delete obj1[key];
       }
     }
   }
   for (key in obj2) {
     if (obj2[key] > 1) {
-      arr.push([key, obj2[key], '2:']);
+      arr.push([key, obj2[key], '2:', 2]);
     }
   }
   arr.sort(function(a, b) {
-    return b[1] - a[1]
+    if (a[1] > b[1]) {
+      return -1;
+    } else if (a[3] > b[3]) {
+      return 1;
+    } else if (a[0] > b[0]) {
+      return 1;
+    }
   })
   console.log(arr);
 }
 
-console.log(mix("Are they here", "yes, they are here"));
+console.log(mix("looping is fun but dangerous", "less dangerous than coding"));
 
 // Palindrome chain length
 
