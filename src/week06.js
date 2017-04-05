@@ -37,11 +37,21 @@ function testArrayEquality(array1, array2) {
   return true;
 }
 
-Strings Mix
+function mix(s1, s2) {
+  // your code
+  var obj1 = s1.match(/[a-z]/g).reduce(function(prev, curr) {
+    return prev[curr] ? prev[curr] = 1 : prev[curr] += 1;
+  }, {});
+  var obj2 = s2.match(/[a-z]/g).reduce(function(prev, curr) {
+    return prev[curr] ? prev[curr] = 1 : prev[curr] += 1;
+  }, {});
+
+  console.log(obj1, obj2);
+}
+
+console.log(mix("Are they here", "yes, they are here"));
+
+// Palindrome chain length
 
 
-
-Palindrome chain length
-
-
-Convert string to camel case
+// Convert string to camel case
