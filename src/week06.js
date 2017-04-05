@@ -38,15 +38,45 @@ function testArrayEquality(array1, array2) {
 }
 
 function mix(s1, s2) {
-  // your code
+  var arr = [];
   var obj1 = s1.match(/[a-z]/g).reduce(function(prev, curr) {
-    return prev[curr] ? prev[curr] = 1 : prev[curr] += 1;
+    prev[curr] ? prev[curr] += 1 : prev[curr] = 1;
+    return prev;
   }, {});
   var obj2 = s2.match(/[a-z]/g).reduce(function(prev, curr) {
-    return prev[curr] ? prev[curr] = 1 : prev[curr] += 1;
+    prev[curr] ? prev[curr] += 1 : prev[curr] = 1;
+    return prev;
   }, {});
 
   console.log(obj1, obj2);
+
+  for (key in obj1) {
+    if (obj1[key] > 1) {
+      if (obj2[key]) {
+        if (obj1[key] > obj2[key]) {
+          arr.push([key, obj1[key], '1:']);
+        } else if (obj1[key] < obj2[key]) {
+          arr.push([key, obj2[key], '2:']);
+        } else {
+          arr.push([key, obj1[key], '=:']);
+        }
+        delete obj1[key];
+        delete obj2[key];
+      } else {
+        arr.push([key, obj1[key], '1:']);
+        delete obj1[key];
+      }
+    }
+  }
+  for (key in obj2) {
+    if (obj2[key] > 1) {
+      arr.push([key, obj2[key], '2:']);
+    }
+  }
+  arr.sort(function(a, b) {
+    return b[1] - a[1]
+  })
+  console.log(arr);
 }
 
 console.log(mix("Are they here", "yes, they are here"));
