@@ -76,9 +76,9 @@ function mix(s1, s2) {
   arr.sort(function(a, b) {
     if (a[1] === b[1]) {
       if (a[3] === b[3]) {
-        return a[0] > b[0]
+        return a[0] > b[0] ? 1 : a[0] < b[0] ? -1 : 0;
       }
-      return a[3] > b[3];
+      return a[3] - b[3];
     }
     return b[1] - a[1]
   })
