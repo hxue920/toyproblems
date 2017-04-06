@@ -74,18 +74,23 @@ function mix(s1, s2) {
     }
   }
   arr.sort(function(a, b) {
-    if (a[1] > b[1]) {
-      return -1;
-    } else if (a[3] > b[3]) {
-      return 1;
-    } else if (a[0] > b[0]) {
-      return 1;
+    if (a[1] === b[1]) {
+      if (a[3] === b[3]) {
+        return a[0] > b[0]
+      }
+      return a[3] > b[3];
     }
+    return b[1] - a[1]
   })
   console.log(arr);
+  var result = arr.map(function(item) {
+    return item[2] + item[0].repeat(item[1]);
+  }).join('/');
+  console.log(result);
+  return result;
 }
 
-console.log(mix("looping is fun but dangerous", "less dangerous than coding"));
+console.log(mix("xlybNqqfbIyggiUnqaa", "Dhxud+yllb&izvhYvnfm2wshkQudzx"));
 
 // Palindrome chain length
 
