@@ -90,7 +90,6 @@ function mix(s1, s2) {
   return result;
 }
 
-console.log(mix("xlybNqqfbIyggiUnqaa", "Dhxud+yllb&izvhYvnfm2wshkQudzx"));
 
 // Palindrome chain length
 
