@@ -27,40 +27,40 @@ var helloWorld = function () {
 //console.log(helloWorld());
 
 function sumStrings(a,b) {
-  return a === '' ? b : b === '' ? "0" : a;
   var arr1 = a.split("").map(function(ele) {return parseInt(ele);});
   var arr2 = b.split("").map(function(ele) {return parseInt(ele);});
   var longest = Math.max(arr1.length, arr2.length);
   var result = [];
   var carryOver = 0;
-  for (var i = longest - 1; i >= 0; i-- ) {
-    if (arr1[i] === undefined) {
-      result.shift(arr2[i]+carryOver);
-      if (arr2[i]+carryOver < 10) {
-        carryOver = 0;
-      } else {
-        carryOver = 1;
-      }
-    } else if (arr2[i] === undefined) {
-      result.shift(arr2[i]+carryOver);
-      if (arr1[i]+carryOver < 10) {
-        carryOver = 0;
-      } else {
-        carryOver = 1;
-      }
+  function processAddition() {
+  if (sum < 10) {
+    carryOver = 0;
+  } else {
+    sum -= 10;
+    carryOver = 1;
+  }
+  result.unshift(sum);
+}
+  for (var i = longest - 1; i >= 0; i--) {
+    var one = arr1.pop();
+    var two = arr2.pop();
+    var sum;
+    if (one === undefined) {
+      sum = two + carryOver;
+      processAddition(carryOver, sum, result);
+    } else if (two === undefined) {
+      sum = one + carryOver;
+      processAddition(carryOver, sum, result);
     } else {
-      result.shift(arr1[i] + arr2[i] + carryOver);
-      if (arr1[i] + arr2[i] + carryOver < 10) {
-        carryOver = 0;
-      } else {
-        carryOver = 1;
-      }
+      sum = one + two + carryOver;
+      processAddition(carryOver, sum, result);
     }
   }
   if (carryOver === 1) {
-    result.shift(1);
+    result.unshift(1);
+  }
+  if (result[0] === 0) {
+    result.shift();
   }
   return result.map(function(num) {return num.toString();}).join("");
 }
-
-console.log(sumStrings('123','456'));
