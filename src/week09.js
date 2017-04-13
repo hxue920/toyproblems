@@ -104,5 +104,20 @@ function removeZeros(array) {
   // to use any Array or Object prototype methods such as .shift(), .push(), etc
 
   // the correctly sorted array should be returned.
+  var length = array.length;
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] === 0 || array[i] === "0") {
+      var temp = array[i];
+      console.log(temp, i);
+      for (var j = i; j < length; j++) {
+        array[j] = array[j+1];
+      }
+      length -= 1;
+      array[array.length-1] = temp;
+    }
+  }
   return array;
 }
+
+console.log(removeZeros([7, 2, 3, 0, 4, 6, 0, 0, 13, 0, 78, 0, 0, 19, 14]));
+console.log(removeZeros([0, "0", 1, 2, 3]));
