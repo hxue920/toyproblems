@@ -109,16 +109,32 @@ function removeZeros(array) {
   while (i < length) {
     if (array[i] === 0 || array[i] === "0") {
       var temp = array[i];
-      console.log(temp, i);
       for (var j = i; j < array.length; j++) {
         array[j] = array[j+1];
       }
       length -= 1;
       i -= 1;
       array[array.length-1] = temp;
-      console.log(typeof array[array.length-1]);
     }
     i += 1;
   }
   return array;
 }
+
+function sumOfDivided(lst) {
+  var max = Math.max.apply(null, lst);
+  // lst.forEach(function(ele) {
+  for (var i = 2; i < max)
+  // });
+  return max;
+}
+
+function isPrime(value) {
+  for(var i = 2; i < value; i++) {
+    if(value % i === 0) {
+      return false;
+    }
+  }
+  return value > 1;
+}
+console.log(sumOfDivided([15,21,24,30,45]));
