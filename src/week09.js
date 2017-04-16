@@ -124,13 +124,15 @@ function removeZeros(array) {
 function sumOfDivided(lst) {
   var max = Math.max.apply(null, lst);
   // lst.forEach(function(ele) {
-  for (var i = 2; i < max)
+  for (var i = 2; i < max/2; i++) {
+
+  }
   // });
   return max;
 }
 
 function isPrime(value) {
-  for(var i = 2; i < value; i++) {
+  for(var i = 2; i <= value/2; i++) {
     if(value % i === 0) {
       return false;
     }
