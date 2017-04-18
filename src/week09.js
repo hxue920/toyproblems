@@ -124,14 +124,26 @@ function removeZeros(array) {
 function sumOfDivided(lst) {
   var max = Math.max.apply(null, lst);
   var primeList = [];
-  // lst.forEach(function(ele) {
+  var obj = {};
+  var result = [];
   for (var i = 2; i < max/2; i++) {
     if (isPrime(i)) {
       primeList.push(i);
     }
   }
-  // });
-  return primeList;
+  primeList.forEach(function(num) {
+    obj[num] = lst.filter(function(item) {
+      if (item % num === 0) {
+        return item;
+      }
+    });
+  });
+  for (var key in obj) {
+    if (obj[key] !== []) {
+      result.push([parseInt(key), findSum(obj[key])]);
+    }
+  }
+  return result;
 }
 
 function isPrime(value) {
@@ -141,5 +153,8 @@ function isPrime(value) {
     }
   }
   return value > 1;
+}
+function findSum(arr) {
+  return arr.reduce(function(a, b) {return a + b}, 0);
 }
 console.log(sumOfDivided([15,21,24,30,45]));
