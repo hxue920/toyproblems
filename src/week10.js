@@ -57,6 +57,7 @@ function loop_size(node){
       break;
     }
   }
+  fastNode = fastNode.next;
   while (fastNode !== slowNode) {
     fastNode = fastNode.next;
     count += 1;
