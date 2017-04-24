@@ -1,17 +1,23 @@
 function chain(fns) {
-  var obj = fns;
-  obj.value = null;
-  for (var fn in obj) {
-    var temp = obj[fn];
-    console.log(temp);
-    obj[fn] = function() {
+  function chainWrapper(val) {
+    this.value = val;
+  }
+
+  for (var fn in fns) {
+    var func = fns[fn];
+    chainWrapper[fn] = function() {
+      var args = Array.prototype.slice.call(arguments);
+      if (this.value) {
+        args = args.unshift(this.value)
+      }
+    }
       if (this.value) {
         console.log(temp);
         this.value = temp.bind(this, this.value)();
       } else {
         this.value = temp.apply(this, arguments);
       }
-      return this;
+      return new chainWrapper(val);
     }
     // obj[fn] = obj[fn].bind(this, null);
   }
