@@ -3,29 +3,24 @@ function chain(fns) {
     this.value = val;
   }
 
-  for (var fn in fns) {
+  // for (var fn in fns) {
+  Object.keys(fns).forEach(function(fn) {
     var func = fns[fn];
-    chainWrapper[fn] = function() {
+    chainWrapper.prototype[fn] = function() {
       var args = Array.prototype.slice.call(arguments);
-      if (this.value) {
-        args = args.unshift(this.value)
+      if (this.value !== null) {
+        args.unshift(this.value);
       }
-    }
-      if (this.value) {
-        console.log(temp);
-        this.value = temp.bind(this, this.value)();
-      } else {
-        this.value = temp.apply(this, arguments);
-      }
+      console.log(func);
+      var val = func.apply(null, args);
+      console.log(val);
       return new chainWrapper(val);
     }
-    // obj[fn] = obj[fn].bind(this, null);
-  }
-  // obj[fn].bind(this, this.value || null);
-  obj.execute = function() {
+  });
+  chainWrapper.prototype.execute = function() {
     return this.value
   }
-  return obj;
+  return new chainWrapper();
 }
 
 function sum(x, y) {
@@ -46,7 +41,7 @@ function addOne(x) {
 
 var c = chain({sum: sum, minus: minus, double: double, addOne: addOne});
 
-console.log(c.sum(1,2));
+console.log(c.sum(1, 2).minus(3).execute());
 
 
 function loop_size(node){
