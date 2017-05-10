@@ -7,3 +7,15 @@ var findPivot = function (array, start, end) {
   }
   return null;
 };
+
+// recursive log solution, not finished.
+var findPivot = function (array, start, end) {
+ start = start || 0;
+ end = end || array.length - 1;
+ var mid = Math.floor((start + end) / 2);
+ if () {
+
+ }
+ return array[start] < array[end] ? findPivot(array, mid, end) : findPivot(array, start, mid);
+};
+
