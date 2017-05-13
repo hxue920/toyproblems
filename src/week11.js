@@ -1,23 +1,25 @@
 // linear time solution
-var findPivot = function (array, start, end) {
-  for(var i = 0; i < array.length; i++){
-      if (array[i] > array[i+1]) {
-        return i+1;
-      }
-  }
-  return null;
-};
+// var findPivot = function (array, start, end) {
+//   for(var i = 0; i < array.length; i++){
+//       if (array[i] > array[i+1]) {
+//         return i+1;
+//       }
+//   }
+//   return null;
+// };
 
 // recursive log solution, not finished.
 var findPivot = function (array, start, end) {
  start = start || 0;
  end = end || array.length - 1;
  var mid = Math.floor((start + end) / 2);
- if () {
-
+ if (start === mid) {
+  return array[start] < array[end] ? null : end;
  }
- return array[start] < array[end] ? findPivot(array, mid, end) : findPivot(array, start, mid);
+ return array[start] < array[mid] ? findPivot(array, mid, end) : findPivot(array, start, mid);
 };
+
+// console.log(findPivot(['cat', 'dog', 'eagle', 'falcon', 'apple', 'bear']));
 
 var waterBlocks = function (blocks) {
   var waterHeights = blocks.map(function(tower, i) {
