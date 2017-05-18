@@ -30,3 +30,17 @@ function main() {
     var res = solveMeFirst(a, b);
     console.log(res);
 }
+
+//Left Rotate
+function main() {
+    var n_temp = readLine().split(' ');
+    var n = parseInt(n_temp[0]);
+    var k = parseInt(n_temp[1]);
+    a = readLine().split(' ');
+    var result = [];
+    a.forEach((Number, index) => {
+        let newIndex = (index + k) % n;
+        result[index] = a[newIndex];
+    });
+    console.log(result.join(' '));
+}
