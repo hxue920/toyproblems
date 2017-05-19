@@ -44,3 +44,10 @@ function main() {
     });
     console.log(result.join(' '));
 }
+
+//Making Anagrams
+function main() {
+    var a = readLine();
+    var b = readLine();
+
+}
