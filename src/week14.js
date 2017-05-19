@@ -49,5 +49,16 @@ function main() {
 function main() {
     var a = readLine();
     var b = readLine();
-
+    var obj = {};
+    var result = 0;
+    a.split("").forEach(char => {
+        obj[char] === undefined ? obj[char] = 1 : obj[char] += 1;
+    })
+    b.split("").forEach(char => {
+        obj[char] === undefined ? obj[char] = -1 : obj[char] -= 1;
+    })
+    for (let prop in obj) {
+       result += Math.abs(obj[prop]);
+    }
+    console.log(result);
 }
