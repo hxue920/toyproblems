@@ -62,3 +62,14 @@ function main() {
     }
     console.log(result);
 }
+
+//Ransom Note
+function main() {
+    var m_temp = readLine().split(' ');
+    var m = parseInt(m_temp[0]);
+    var n = parseInt(m_temp[1]);
+    magazine = readLine().split(' ');
+    ransom = readLine().split(' ');
+    console.log(ransom.every(word => magazine.includes(word)) ? 'Yes' : 'Newp')
+
+}
