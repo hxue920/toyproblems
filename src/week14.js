@@ -70,6 +70,14 @@ function main() {
     var n = parseInt(m_temp[1]);
     magazine = readLine().split(' ');
     ransom = readLine().split(' ');
-    console.log(ransom.every(word => magazine.includes(word)) ? 'Yes' : 'Newp')
-
+    for (const word of ransom) {
+        let index = magazine.indexOf(word);
+        if (index !== -1) {
+            magazine[index] = undefined;
+        } else {
+            console.log("No");
+            return;
+        }
+    }
+    console.log('Yes');
 }
