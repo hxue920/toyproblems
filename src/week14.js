@@ -81,3 +81,12 @@ function main() {
     }
     console.log('Yes');
 }
+
+//Balanced Brackets
+function main() {
+    var t = parseInt(readLine());
+    for(var a0 = 0; a0 < t; a0++){
+        var expression = readLine();
+    }
+
+}
