@@ -87,31 +87,34 @@ function main() {
     var t = parseInt(readLine());
     for(var a0 = 0; a0 < t; a0++){
         var expression = readLine();
-        var stack = [];
+        var result = 'YES';
         for (var bracket of expression) {
             if (bracket === '[' || bracket === '{' || bracket === '(') {
                 stack.push(bracket);
             } else if (bracket === ']') {
                 var temp = stack.pop();
                 if (temp !== '[') {
-                    console.log('NO');
+                    result = 'NO';
                     break;
                 }
             } else if (bracket === '}') {
                 var temp = stack.pop();
                 if (temp !== '{') {
-                    console.log('NO');
+                    result = 'NO';
                     break;
                 }
             } else if (bracket === ')') {
                 var temp = stack.pop();
                 if (temp !== '(') {
-                    console.log('NO');
+                    result = 'NO';
                     break;
                 }
             }
         }
-        console.log('YES')
+        if (stack.length > 0) {
+            result = 'NO';
+        }
+        console.log(result)
     }
 
 }
