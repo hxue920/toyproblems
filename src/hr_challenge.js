@@ -1,8 +1,7 @@
 // Rock Paper Permutation
 // Given a number of rounds n, return all the possible rock-paper-scissors play possibilities for that number of rounds.
 function rockPaperPermutation (roundCount) {
-    // Write your code here, and
-  // return your final answer.
+
   var rps = ["r", "p", "s"];
   var result = [];
   var n = 2;
@@ -28,4 +27,25 @@ function rockPaperPermutation (roundCount) {
     n++;
   }
   return result;
+}
+
+// Non-repeated Character
+// Given an arbitrary input string, return the first non-repeating character. For strings with all repeats, return 'sorry'.
+function firstNonRepeatedCharacter (string) {
+
+  var strArray = string.split("");
+  var letterObj = {}
+  strArray.forEach(function(letter) {
+    if (letterObj[letter] === undefined) {
+      letterObj[letter] = 1;
+    } else {
+      letterObj[letter]++;
+    }
+  });
+  for (var key in letterObj) {
+    if (letterObj[key] === 1) {
+      return key;
+    }
+  }
+  return "sorry";
 }
