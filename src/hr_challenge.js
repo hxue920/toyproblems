@@ -129,3 +129,24 @@ var bubbleSort = function(array) {
   }
   return arrayCopy;
 };
+
+// Common Characters
+// Write a function that accepts two strings as arguments, and returns only the characters that are common to both strings.
+
+// Your function should return the common characters in the same order that they appear in the first argument. Do not return duplicate characters and ignore whitespace in your returned string.
+
+// Example: commonCharacters('acexivou', 'aegihobu')
+
+// Returns: 'aeiou'
+
+commonCharacters = function(string1, string2){
+  var strArr = string1.split("");
+  console.log(strArr);
+  var result = [];
+  for (var i = 0; i < strArr.length; i++) {
+    if (string2.indexOf(strArr[i])!==-1&&strArr[i]!==" "&&result.indexOf(strArr[i])===-1) {
+      result.push(strArr[i]);
+    }
+  }
+  return result.join("");
+};
