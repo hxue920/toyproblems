@@ -231,3 +231,33 @@ Tree.prototype.removeChild = function(child){
     throw new Error("That node is not an immediate child of this tree");
   }
 };
+
+// Largest Product of Three
+// Write a function that accepts an array of integers and returns the largest product possible from three of those numbers.
+function largestProductOfThree (array) {
+  var sortedArray = array.slice().sort(function(a,b) {return Math.abs(b) - Math.abs(a)});
+  var sortedArray2 = array.slice().sort(function(a,b) {return b - a});
+  var result;
+
+  if (sortedArray2[0]<0) {
+    result = sortedArray2[0]*sortedArray2[1]*sortedArray2[2];
+    return result;
+  } else {
+    if (sortedArray[0]*sortedArray[1]<0) {
+      for (var i = 2; i < sortedArray.length; i++) {
+        if (sortedArray[i]<0) {
+          result = sortedArray[0]*sortedArray[1]*sortedArray[i];
+          return result;
+        }
+      }
+    } else if (sortedArray[0]*sortedArray[1]>=0){
+      for (var i = 2; i < sortedArray.length; i++) {
+        if (sortedArray[i]>=0) {
+          result = sortedArray[0]*sortedArray[1]*sortedArray[i];
+          return result;
+        }
+      }
+    }
+  }
+
+}
