@@ -261,3 +261,28 @@ function largestProductOfThree (array) {
   }
 
 }
+
+// Deep Equality
+// Write a function that, given two objects, returns whether or not the two are deeply equivalent–meaning the structure of the two objects is the same, and so is the structure of each of their corresponding descendants.
+
+// DO NOT use JSON.stringify.
+deepEquals = function(a, b){
+  if (a === b) {
+    return true;
+  }
+  if (typeof a != "object" || Array.isArray(a) === true || typeof b != "object" || Array.isArray(b) === true) {
+    return false;
+  }
+  var propsInA = 0;
+  var propsInB = 0;
+  for (var prop in a) {
+    propsInA += 1;
+  }
+  for (var prop in b) {
+    propsInB += 1;
+    if (!(prop in a) || !deepEquals(a[prop], b[prop])) {
+      return false;
+    }
+  }
+  return propsInA === propsInB;
+};
