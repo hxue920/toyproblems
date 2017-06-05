@@ -286,3 +286,44 @@ deepEquals = function(a, b){
   }
   return propsInA === propsInB;
 };
+
+// Island Count
+// Given a string representation of a 2d map, return the number of islands in the map. Land spaces are denoted by a zero, while water is denoted by a dot. Two land spaces are considered connected if they are adjacent (but not diagonal).
+
+// (!!!) NOTICE: Newline characters in the inputs have been replaced with <br /> tags to make the value easier to read. In other words, when you see a break, it's actually a
+
+// \n
+// character. Check your console when submitting to see the input for yourself.
+
+function countIslands (mapStr) {
+  var mapArr = mapStr.split('\n').map(function(row) {return row.split("");});
+  var count = 0;
+  for (var i = 0; i < mapArr.length; i++) {
+    for (var j = 0; j < mapArr[i].length; j++) {
+      if (isLand(mapArr[i][j])) {
+        count += 1;
+        sinkLand(mapArr, i, j);
+      }
+    }
+  }
+  return count
+}
+
+function isLand(piece) {
+  if (piece === "0") {
+    return true;
+  } else {
+    return false;
+  }
+ }
+
+function sinkLand(mapArr, row, col) {
+  if (row < 0 || col < 0 || row >= mapArr.length || col >= mapArr[row].length || !isLand(mapArr[row][col])) {
+    return;
+  };
+  mapArr[row][col] = "."
+  sinkLand(mapArr, row-1, col);
+  sinkLand(mapArr, row+1, col);
+  sinkLand(mapArr, row, col+1);
+  sinkLand(mapArr, row, col-1);
+}
