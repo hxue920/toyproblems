@@ -327,3 +327,51 @@ function sinkLand(mapArr, row, col) {
   sinkLand(mapArr, row, col+1);
   sinkLand(mapArr, row, col-1);
 }
+
+// Binary Search Array
+// Given a sorted array of integers, find the index of a target value using a binary search algorithm.
+
+// A binary search finds an item in a sorted array by repeatedly choosing a middle value and dividing the search interval in half. The initial interval includes the whole array. If the value of the target value is less than the middle value of the interval, then the next interval will be the lower half of the current interval. If the value of the target value is greater than the middle value, then the next interval will be the upper half. The search process repeats until the middle value is equal to the target value, or the search interval is empty.
+
+
+// Note:
+// Your function should return -1 for target values not in the array.
+
+// Do NOT use Array.prototype.indexOf in your solution. What would be the fun in that?
+
+
+
+
+// Parameters:
+
+
+// array (required) - an array.
+
+// target (required) - an integer value.
+
+function binarySearch (array, target) {
+  var arrayObj = array.reduce(function(memo, curr, index) {
+    memo[curr] = index;
+    return memo;
+  }, {});
+  var result = -1;
+
+  function searchSolution(array, target) {
+      if (array.length === 1) {
+        if (array[0] === target) {
+          result = arrayObj[array[0]];
+        }
+        return;
+      } else if (array[Math.floor(array.length / 2)] === target) {
+        result = arrayObj[array[Math.floor(array.length / 2)]];
+        return;
+      }
+      if (array[Math.floor(array.length / 2)] > target) {
+        return searchSolution(array.slice(0, Math.floor(array.length / 2)), target);
+      } else if (array[Math.floor(array.length / 2)] < target) {
+        return searchSolution(array.slice(Math.floor(array.length / 2)), target);
+      }
+  }
+  searchSolution(array, target);
+  return result;
+}
