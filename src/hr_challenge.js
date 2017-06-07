@@ -375,3 +375,33 @@ function binarySearch (array, target) {
   searchSolution(array, target);
   return result;
 }
+
+// Power Set
+// Return an array that contains the power set of a given string. The power set is a set of all the possible subsets, including the empty set.
+
+// Make sure your code does the following:
+
+// All characters in a subset should be sorted alphabetically, and the array of subsets should be sorted alphabetically.
+// Sets of the same characters are considered duplicates regardless of order and count only once, e.g. ‘ab’ and ‘ba’ are the same.
+// Duplicate characters in strings should be ignored; for example, ‘obama’ should be evaluated as if it only contained one ‘a’. See the result below.
+function powerSet (string) {
+  var sets = [""];
+  var uniqueArr = string.split("").filter(function(char, idx, arr) {return arr.indexOf(char) === idx;});
+
+
+  for (var i = 0; i < uniqueArr.length; i++) {
+    concatChar(uniqueArr[i], sets);
+  }
+
+  for (var j = 0; j < sets.length; j++) {
+    sets[j] = sets[j].split("").sort().join("");
+  }
+  return sets.sort();
+}
+
+function concatChar(char, sets) {
+  var copy = sets.slice();
+  for (var i = 0; i < copy.length; i++) {
+    sets.push(copy[i].concat(char));
+  }
+}
