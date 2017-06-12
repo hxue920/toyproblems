@@ -667,3 +667,21 @@ Range.prototype.includes = function (val) {
   }
   return false;
 };
+
+// Balanced Brackets
+// Given a string, return true if it contains all balanced parenthesis (), curly-brackets {}, and square-brackets [].
+
+function isBalanced (str) {
+  var stack = [];
+  var brackets = {'(': ')', '{': '}', '[': ']'};
+  for (var i = 0; i < str.length; i++) {
+    if (brackets[str[i]]) {
+      stack.push(str[i]);
+    } else if (str[i] === ')' || str[i] === '}' || str[i] === ']') {
+      if (brackets[stack.pop()] !== str[i]) {
+        return false;
+      }
+    }
+  }
+  return stack.length===0;
+}
