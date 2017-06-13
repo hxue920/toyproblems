@@ -714,3 +714,29 @@ var asyncMap = function(tasks, callback){
     });
   }
 };
+
+// Longest Run
+// Write a function that, given a string, finds the longest run of identical characters and returns an array containing the start and end indices of that run.
+// If there are two runs of equal length, return the first one. Return [0,0] for no runs.
+
+function longestRun (string) {
+  var charCount = 1;
+  var currStr;
+  var result;
+  if (string === "") {
+    return [0, 0];
+  }
+  var strArr = string.match(/([a-zA-Z])\1*/gi);
+  for (var i = 0; i < strArr.length; i++) {
+    if (strArr[i].length > charCount) {
+      currStr = strArr[i];
+      charCount = strArr[i].length;
+    }
+  }
+  if (charCount === 1) {
+    return [0, 0];
+  }
+  result = [string.indexOf(currStr), (string.indexOf(currStr)+currStr.length-1)];
+
+  return result;
+}
