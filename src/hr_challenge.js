@@ -836,3 +836,23 @@ function mergeSort(arr){
 
   return mergeSolution(mergeSort(left), mergeSort(right));
 }
+
+// Fraction Converter
+// Write a function that takes a number as its argument and returns a string that represents that number’s simplified fraction.
+// Whole numbers and mixed fractions should be returned as improper fractions.
+function fractionConverter (number) {
+  var num = number;
+  var denom = 1;
+  while (num%1 !==0) {
+    num = parseFloat(num*10).toPrecision(12);
+    denom *= 10;
+  }
+  var gcd = 1;
+  for (var i = Math.abs(num); i>1; i--) {
+    if (num%i === 0 && denom%i === 0) {
+      gcd = i;
+      break;
+    }
+  }
+  return num/gcd + '/' + denom/gcd;
+}
