@@ -1045,3 +1045,54 @@ var makeHashTable = function(){
    }
    return hash % max;
  };
+
+// Linked List
+// Implement a linked-list
+var LinkedList = function (initialValue) {
+// Write your code here
+  var initialValue = initialValue || null
+  var node = new Node(initialValue);
+  this.head = node;
+  this.tail = node;
+
+};
+
+LinkedList.prototype.addToTail = function(value) {
+  var newTail = new Node(value);
+  if (!this.head.value) {
+    this.head = newTail;
+  }
+  if (this.tail.value) {
+    this.tail.next = newTail;
+  }
+  this.tail = newTail;
+}
+LinkedList.prototype.removeHead = function() {
+  if (this.head.next === null) {
+    delete this.head;
+    delete this.tail;
+    return null;
+  } else {
+    var currHead = this.head;
+    this.head = this.head.next;
+    return currHead;
+  }
+}
+LinkedList.prototype.contains = function(value) {
+  var currNode = this.head;
+  while (currNode) {
+    if (currNode.value === value) {
+      return true;
+    }
+    currNode = currNode.next;
+  }
+  return false;
+}
+
+var Node = function(value) {
+  var node = {}
+  node.value = value;
+  node.next = null;
+  return node;
+}
+// etc...
