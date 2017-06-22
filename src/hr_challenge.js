@@ -1096,3 +1096,51 @@ var Node = function(value) {
   return node;
 }
 // etc...
+
+// Queue Stack
+// Write a stack. Once you’re done, implement a queue using two stacks. Do not create a storage array for your queue.
+var Stack = function() {
+  var storage = [];
+  var length = 0;
+
+  this.push = function(value){
+    storage[length++] = value;
+  };
+
+  this.pop = function(){
+    var result = storage[--length];
+    delete storage[length];
+    return result;
+  };
+
+  this.size = function(){
+    return length;
+  };
+
+};
+
+var Queue = function() {
+
+  var inbox = new Stack();
+  var outbox = new Stack();
+
+  this.enqueue = function(value){
+    inbox.push(value);
+  };
+
+  this.dequeue = function(){
+    if (outbox.size()===0) {
+      while (inbox.size() !== 0) {
+        var temp = inbox.pop();
+        outbox.push(temp);
+      }
+    }
+    var result = outbox.pop();
+    return result;
+  };
+
+  this.size = function(){
+    var result = inbox.size() + outbox.size();
+    return result;
+  };
+};
