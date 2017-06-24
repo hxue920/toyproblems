@@ -1220,3 +1220,34 @@ BinaryHeap.prototype.lessChild = function(index) {
     return index*2+1;
   }
 }
+
+// Robot Paths
+// A robot located at the top left corner of an n x n grid is trying to reach the bottom right corner. The robot can move either up, down, left, or right, but cannot visit the same spot twice. How many possible unique paths are there to the bottom right corner?
+
+// Make your solution work for a grid of any size.
+
+// Parameters:
+
+// n (required) - amount of rows/columns (max 6)
+function robotPaths (n, board, i, j) {
+  // take a step in a direction
+    // if invalid square, back to previous location and try another square,
+    // if at bottom right corner, add one to count,
+    // back to last vaild square and pick another direction and so on
+  //return count,
+  if (!board) {
+    board = makeBoard(n);
+    i = 0, j = 0;
+  }
+  var result;
+  if (!(i>=0 && i<n && j>=0 && j<n) || board.hasBeenVisited(i, j)) {
+    return 0;
+  }
+  if (i === n-1 && j === n-1) {
+    return 1;
+  }
+  board.togglePiece(i, j);
+  result = robotPaths(n, board, i-1, j) + robotPaths(n, board, i+1, j) + robotPaths(n, board, i, j-1) + robotPaths(n, board, i, j+1);
+  board.togglePiece(i, j);
+  return result;
+}
