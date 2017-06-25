@@ -1251,3 +1251,29 @@ function robotPaths (n, board, i, j) {
   board.togglePiece(i, j);
   return result;
 }
+
+// Even Occurrence
+// 3/4/16 UPDATE: If you solved this challenge previously, you may have to update your function name from evenOccurence (with 1 r) to evenOccurrence (with 2 rs)
+
+
+// Find the first item that occurs an even number of times in an array. Remember to handle multiple even-occurrence items and return the first one. Return null if there are no even-occurrence items.
+
+function evenOccurrence (arr) {
+  var arrObj = arr.reduce(function(memo, curr) {
+    if (memo[curr] === undefined) {
+      memo[curr] = 1;
+    } else {
+      memo[curr] += 1;
+    }
+    return memo;
+  }, {});
+  for (var key in arrObj) {
+    if (arrObj[key] % 2 === 0) {
+      if (!isNaN(key)) {
+        return parseInt(key);
+      }
+      return key;
+    }
+  }
+  return null;
+}
