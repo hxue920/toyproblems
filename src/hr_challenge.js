@@ -1420,3 +1420,37 @@ function primeTester (n) {
   }
   return true;
 }
+
+// Prime Tester(extra credit)
+//   Extra credit: Write a function that generates a list of all prime numbers in a user-specified range (inclusive). If you're not quite sure where to start, check out the Sieve of Eratosthenes on Wikipedia. (And if you're feeling saucy, check out the Sieve of Atkin.)
+// Parameters:
+
+// startbegin of range
+
+// endend of range (inlcusive)
+
+function primeSieve (start, end) {
+  var numArr = range(0, end);
+  var prime = 2;
+  while(prime<end) {
+    for (var j = prime*2; j <= end; j+=prime) {
+      numArr[j] = null;
+    }
+    prime+=1;
+    while(!numArr[prime]&&prime<=end) {
+      prime+=1;
+    }
+  }
+  var result = numArr.slice(Math.max(start, 2)).filter(function(item) {
+    return item;
+  });
+  return result;
+}
+
+function range(begin, end) {
+  var result = [];
+  for (var i = begin; i <= end; i++) {
+    result.push(i);
+  }
+  return result;
+}
