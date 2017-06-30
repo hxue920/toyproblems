@@ -1493,3 +1493,32 @@ function swap (array, index1, index2) {
   array[index1] = array[index2];
   array[index2] = temp;
 }
+
+// Character Frequency
+// Write a function that takes as its input a string and returns an array of arrays as shown below sorted in descending order by frequency and then by ascending order by character.
+function characterFrequency (string) {
+  var strObj = {};
+  var result = [];
+  string.split("").forEach(function(char){
+    if (!strObj[char]) {
+      strObj[char] = 1;
+    } else {
+      strObj[char]+=1;
+    }
+  });
+  for (var key in strObj) {
+    result.push([key, strObj[key]]);
+  }
+  result.sort(function(a, b) {
+    if (a[1] < b[1]) {
+      return 1;
+    } else if (a[1] > b[1]) {
+      return -1;
+    } else if (a[0] < b[0]) {
+      return -1;
+    } else if (a[0] > b[0]) {
+      return 1;
+    }
+  });
+  return result;
+}
