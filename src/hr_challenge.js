@@ -1604,3 +1604,24 @@ Tree.prototype.removeChild = function (child) {
     throw new Error("That node is not an immediate child of this tree");
   }
 };
+
+// Sum Array
+// Given an array of numbers, calculate the greatest contiguous sum of numbers in it. A single array item will count as a contiguous sum.
+
+function sumArray (array) {
+
+  var maxSum = Number.NEGATIVE_INFINITY;
+  var currSum = 0;
+  var preSum = 0;
+  for (var i = 0; i < array.length; i++) {
+    preSum = currSum;
+    currSum = preSum + array[i];
+    if (currSum > maxSum) {
+      maxSum = currSum;
+    }
+    if (currSum < 0 && currSum<preSum) {
+      currSum = 0;
+    }
+  }
+  return maxSum;
+}
