@@ -1625,3 +1625,50 @@ function sumArray (array) {
   }
   return maxSum;
 }
+
+// Telephone Words
+// Each number key on a standard phone keypad has a set of Latin letters written on it as well: http://en.wikipedia.org/wiki/File:Telephone-keypad2.svg
+
+// Businesses often try to come up with clever ways to spell out their phone number in advertisements to make it more memorable. But there are a lot of combinations!
+
+// Write a function that takes up to four digits of a phone number, and returns a list of all of the words (in alphabetical order) that can be written on the phone with that number. (You should return all permutations, not only English words.)
+
+function telephoneWords (digitString) {
+
+  var keypadObj = {
+    "0" : "0",
+    "1" : "1",
+    "2" : "ABC",
+    "3" : "DEF",
+    "4" : "GHI",
+    "5" : "JKL",
+    "6" : "MNO",
+    "7" : "PQRS",
+    "8" : "TUV",
+    "9" : "WXYZ",
+  }
+  var result = [];
+  var temp = [];
+  function findSolution(digitString, keypadObj, result, temp) {
+    if (digitString.length === 0) {
+      var resultArr = [];
+      for (var i = 0; i < temp.length; i++) {
+        resultArr[i] = temp[i];
+      }
+      result.push(resultArr.join(""));
+      return;
+    }
+
+    var currStr = keypadObj[digitString.substring(0,1)];
+    for (var j = 0; j < currStr.length; j++) {
+      temp.push(currStr.charAt(j));
+      findSolution(digitString.substring(1), keypadObj, result, temp);
+      temp.pop();
+    }
+
+  }
+
+  findSolution(digitString, keypadObj, result, temp)
+  return result;
+
+}
