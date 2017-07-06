@@ -1779,3 +1779,21 @@ function coinSums (total) {
   findSolution(total, coins.length-1);
   return count;
 }
+
+// Arrayception
+// Given an array of arbitrarily nested arrays, return n, where n is the deepest level that contains a non-array value.
+function arrayception (array, currCount, maxCount) {
+
+  var currCount = currCount || 0;
+  var maxCount = maxCount || 0;
+  array.forEach(function(item) {
+    if (Array.isArray(item)) {
+      maxCount = arrayception(item, currCount+1, maxCount);
+    } else {
+      currCount += 1;
+      maxCount = Math.max(maxCount, currCount);
+      currCount -= 1;
+    }
+  });
+  return maxCount;
+}
