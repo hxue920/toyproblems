@@ -2017,3 +2017,38 @@ function allAnagrams (string) {
   findSolution('', string);
   return Object.keys(results);
 }
+
+// Words within Words
+// Given an array of unique words, find the word that contains the greatest number of other words. A word must be at least two letters long.
+function nestedWordCount (wordList) {
+
+  var listObj = {};
+  // var listArr = [];
+  var result = "";
+  var max = 0;
+
+  wordList.forEach(function(target) {
+    var count = 0;
+    wordList.forEach(function(word) {
+      if (target.toLowerCase().includes(word.toLowerCase())) {
+        // if (listObj[target] === undefined) {
+        //   listObj[target] = 0;
+        // }
+        // listObj[target] += 1;
+        count+=1;
+      }
+    })
+    if (count>max) {
+      max = count;
+      result = target;
+    }
+  })
+
+  // for (var key in listObj) {
+  //   if (listObj[key]>max) {
+  //     max = listObj[key];
+  //     result = key;
+  //   }
+  // }
+  return result;
+}
