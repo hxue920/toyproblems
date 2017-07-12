@@ -2052,3 +2052,31 @@ function nestedWordCount (wordList) {
   // }
   return result;
 }
+
+// Longest Palindrome
+// Implement a function that finds the longest palindrome in a given string. For example, in the string “My dad is a racecar athlete”, the longest palindrome is “a racecar a”. Count whitespaces as valid characters. Other palindromes in the above string include “dad”, “ete”, “ dad “ (including whitespace on each side of dad).
+
+function longestPalindrome (string) {
+
+  var maxPalindrome = "";
+  function isPalindrome (left, right) {
+    while(left>=0 && right<string.length && string[left] === string[right]) {
+      left -= 1;
+      right += 1;
+    }
+  return string.slice(left+1, right);
+  }
+
+  for (var i = 0; i < string.length; i++) {
+    var oddPalindrome = isPalindrome(i-1, i+1);
+    var evenPalindrome = isPalindrome(i, i+1);
+
+    if (oddPalindrome.length > maxPalindrome.length) {
+      maxPalindrome = oddPalindrome;
+    }
+    if (evenPalindrome.length > maxPalindrome.length) {
+      maxPalindrome = evenPalindrome;
+    }
+  }
+  return maxPalindrome;
+}
