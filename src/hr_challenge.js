@@ -2080,3 +2080,29 @@ function longestPalindrome (string) {
   }
   return maxPalindrome;
 }
+
+// Only Unique
+// Given a string, remove any characters that are not unique from the string.
+
+function onlyUnique (str) {
+
+  var strObj = {};
+  var strArr = str.split("");
+  strArr.forEach(function(char) {
+    if (strObj[char] === undefined) {
+      strObj[char] = 0;
+    }
+    strObj[char] += 1;
+  });
+  for (var i = 0; i < str.length; i++) {
+    if (strObj[str[i]] > 1) {
+      strArr.forEach(function(item, index) {
+        if (item === str[i]) {
+          strArr.splice(index, 1);
+        }
+      })
+    }
+  }
+  return strArr.join("");
+
+}
