@@ -121,7 +121,18 @@ function main() {
 
 // Queues: A Tale of Two Stacks
 function processData(input) {
-    //Enter your code here
+    var inputs = input.split('\n');
+    var stack1 = [];
+    var stack2 = [];
+    for (var i = 1; i < inputs.length; i++) {
+        if (inputs[i] === '2') {
+
+        } else if (inputs[i] === '3') {
+            console.log(stack1[0]);
+        } else {
+            inputs[i].split(' ')[1];
+        }
+    }
 }
 
 process.stdin.resume();
