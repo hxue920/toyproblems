@@ -122,15 +122,24 @@ function main() {
 // Queues: A Tale of Two Stacks
 function processData(input) {
     var inputs = input.split('\n');
-    var stack1 = [];
-    var stack2 = [];
+    var Queue = function() {
+        var in = new Stack();
+        var out = new Stack();
+        this.enqueue = function(value) {
+            in.push(value);
+        }
+        this.dequeue = function() {
+
+        }
+    }
     for (var i = 1; i < inputs.length; i++) {
         if (inputs[i] === '2') {
-
+            queue.dequeue();
         } else if (inputs[i] === '3') {
             console.log(stack1[0]);
         } else {
-            inputs[i].split(' ')[1];
+            var temp = inputs[i].split(' ');
+            queue.enqueue(temp[1]);
         }
     }
 }
