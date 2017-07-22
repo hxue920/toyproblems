@@ -129,7 +129,13 @@ function processData(input) {
             in.push(value);
         }
         this.dequeue = function() {
-
+            if (out.size() === 0) {
+                while (in.size() !== 0) {
+                    var temp = in.pop();
+                    out.push(temp);
+                }
+            }
+            out.pop();
         }
     }
     for (var i = 1; i < inputs.length; i++) {
