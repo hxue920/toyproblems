@@ -122,6 +122,25 @@ function main() {
 // Queues: A Tale of Two Stacks
 function processData(input) {
     var inputs = input.split('\n');
+    var Stack = function() {
+        var storage = [];
+        var length = 0;
+        var currentHead;
+        this.push = function(value) {
+            storage[length++] = value;
+        }
+        this.pop = function() {
+            delete storage[length--];
+            currentHead = storage[length];
+        }
+        this.size = function() {
+            return length;
+        }
+        this.returnHead = function() {
+            return currentHead;
+        }
+    }
+
     var Queue = function() {
         var in = new Stack();
         var out = new Stack();
