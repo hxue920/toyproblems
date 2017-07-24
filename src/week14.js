@@ -156,12 +156,16 @@ function processData(input) {
             }
             out.pop();
         }
+        this.returnHead = function() {
+            return out.returnHead();
+        }
     }
+    var queue = new Queue();
     for (var i = 1; i < inputs.length; i++) {
         if (inputs[i] === '2') {
             queue.dequeue();
         } else if (inputs[i] === '3') {
-            console.log(stack1[0]);
+            queue.returnHead();
         } else {
             var temp = inputs[i].split(' ');
             queue.enqueue(temp[1]);
