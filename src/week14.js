@@ -122,24 +122,22 @@ function main() {
 // Queues: A Tale of Two Stacks
 function processData(input) {
     var inputs = input.split('\n');
+    var head;
     var Stack = function() {
         var storage = [];
         var length = 0;
-        var currentHead;
+
         this.push = function(value) {
             storage[length++] = value;
         }
         this.pop = function() {
             delete storage[length--];
-            currentHead = storage[length];
-            console.log(currentHead);
         }
         this.size = function() {
             return length;
         }
-        this.returnHead = function() {
-            console.log(currentHead);
-            return currentHead;
+        this.setHead = function() {
+            head = storage[length];
         }
     }
 
@@ -148,6 +146,9 @@ function processData(input) {
         var outbox = new Stack();
         this.enqueue = function(value) {
             inbox.push(value);
+            if (inbox.size()+outbox.size() === 1) {
+                head = value;
+            }
         }
         this.dequeue = function() {
             if (outbox.size() === 0) {
@@ -157,9 +158,7 @@ function processData(input) {
                 }
             }
             outbox.pop();
-        }
-        this.returnHead = function() {
-            return outbox.returnHead();
+            outbox.setHead();
         }
     }
     var queue = new Queue();
@@ -167,7 +166,7 @@ function processData(input) {
         if (inputs[i] === '2') {
             queue.dequeue();
         } else if (inputs[i] === '3') {
-            console.log(queue.returnHead());
+            console.log(head);
         } else {
             var temp = inputs[i].split(' ');
             queue.enqueue(temp[1]);
