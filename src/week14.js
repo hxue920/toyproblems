@@ -132,32 +132,34 @@ function processData(input) {
         this.pop = function() {
             delete storage[length--];
             currentHead = storage[length];
+            console.log(currentHead);
         }
         this.size = function() {
             return length;
         }
         this.returnHead = function() {
+            console.log(currentHead);
             return currentHead;
         }
     }
 
     var Queue = function() {
-        var in = new Stack();
-        var out = new Stack();
+        var inbox = new Stack();
+        var outbox = new Stack();
         this.enqueue = function(value) {
-            in.push(value);
+            inbox.push(value);
         }
         this.dequeue = function() {
-            if (out.size() === 0) {
-                while (in.size() !== 0) {
-                    var temp = in.pop();
-                    out.push(temp);
+            if (outbox.size() === 0) {
+                while (inbox.size() !== 0) {
+                    var temp = inbox.pop();
+                    outbox.push(temp);
                 }
             }
-            out.pop();
+            outbox.pop();
         }
         this.returnHead = function() {
-            return out.returnHead();
+            return outbox.returnHead();
         }
     }
     var queue = new Queue();
@@ -165,7 +167,7 @@ function processData(input) {
         if (inputs[i] === '2') {
             queue.dequeue();
         } else if (inputs[i] === '3') {
-            queue.returnHead();
+            console.log(queue.returnHead());
         } else {
             var temp = inputs[i].split(' ');
             queue.enqueue(temp[1]);
