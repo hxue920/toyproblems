@@ -139,6 +139,12 @@ function processData(input) {
         this.setHead = function() {
             head = storage[length];
         }
+        this.getTail = function() {
+            return storage[length];
+        }
+        this.getHead = function() {
+            return storage[0];
+        }
     }
 
     var Queue = function() {
@@ -149,6 +155,7 @@ function processData(input) {
             if (inbox.size()+outbox.size() === 1) {
                 head = value;
             }
+            console.log(head);
         }
         this.dequeue = function() {
             if (outbox.size() === 0) {
@@ -159,6 +166,14 @@ function processData(input) {
             }
             outbox.pop();
             outbox.setHead();
+            //console.log(head);
+        }
+        this.printHead = function() {
+            if (outbox.size > 0) {
+                console.log(outbox.getTail());
+            } else {
+                console.log(inbox.getHead());
+            }
         }
     }
     var queue = new Queue();
@@ -166,7 +181,7 @@ function processData(input) {
         if (inputs[i] === '2') {
             queue.dequeue();
         } else if (inputs[i] === '3') {
-            console.log(head);
+            queue.printHead();
         } else {
             var temp = inputs[i].split(' ');
             queue.enqueue(temp[1]);
