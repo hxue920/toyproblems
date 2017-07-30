@@ -219,5 +219,22 @@ function main() {
     var n = parseInt(readLine());
     a = readLine().split(' ');
     a = a.map(Number);
+    var swapCount = 0;
+    var swapped;
+    do {
+        swapped = false;
+        for (var i = 0; i < a.length; i++) {
+            if(a[i] > a[i+1]) {
+                var temp = a[i+1];
+                a[i+1] = a[i];
+                a[i] = temp;
+                swapCount+= 1;
+                swapped = true;
+            }
+        }
 
+    } while(swapped);
+    console.log(`Array is sorted in ${swapCount} swaps.
+                First Element: ${a[0]}
+                Last Element: ${a[a.length-1]}`);
 }
