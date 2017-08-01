@@ -262,12 +262,45 @@ function readLine() {
 
 /////////////// ignore above this line ////////////////////
 
+function countInversions(arr) {
+    // Complete this function
+    var count = 0;
+    function mergeSort(arr) {
+        if (arr.length < 2) return arr;
+        var mid = Math.floor(arr.length/2);
+        var left = arr.slice(0, mid);
+        var right = arr.slice(mid);
+
+        return combine(mergeSort(left), mergeSort(right));
+    }
+    function combine(left, right) {
+        var result = [];
+        while(left.length && right.length) {
+            if (left[0] <= right[0]) {
+                result.push(left.shift());
+            } else {
+                result.push(right.shift());
+            }
+        }
+        if (left.length) {
+            [...result, ...left];
+        }
+        if (right.length) {
+            [...result, ...right];
+        }
+        return result;
+    }
+    mergeSort(arr);
+}
+
 function main() {
     var t = parseInt(readLine());
     for(var a0 = 0; a0 < t; a0++){
         var n = parseInt(readLine());
         arr = readLine().split(' ');
         arr = arr.map(Number);
+        var result = countInversions(arr);
+        process.stdout.write("" + result + "\n");
     }
 
 }
