@@ -278,8 +278,10 @@ function countInversions(arr) {
         while(left.length && right.length) {
             if (left[0] <= right[0]) {
                 result.push(left.shift());
+                count+= left.length;
             } else {
                 result.push(right.shift());
+                count+= left.length;
             }
         }
         if (left.length) {
@@ -291,6 +293,7 @@ function countInversions(arr) {
         return result;
     }
     mergeSort(arr);
+    return count;
 }
 
 function main() {
