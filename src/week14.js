@@ -263,7 +263,6 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function countInversions(arr) {
-    // Complete this function
     var count = 0;
     function mergeSort(arr) {
         if (arr.length < 2) return arr;
@@ -278,17 +277,17 @@ function countInversions(arr) {
         while(left.length && right.length) {
             if (left[0] <= right[0]) {
                 result.push(left.shift());
-                count+= left.length;
+
             } else {
                 result.push(right.shift());
-                count+= left.length;
+                count += left.length;
             }
         }
-        if (left.length) {
-            [...result, ...left];
+        while (left.length) {
+            result.push(left.shift());
         }
-        if (right.length) {
-            [...result, ...right];
+        while (right.length) {
+            result.push(right.shift());
         }
         return result;
     }
