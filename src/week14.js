@@ -340,3 +340,18 @@ function main() {
     }
 
 }
+
+function connectedCells() {
+    var count = 0;
+    for (var i = 0; i < grid.length; i++) {
+        for (var j = 0; j < grid[i].length; j++) {
+            if (isOne(grid[i][j])) {
+                count += 1;
+                zeroCell(i, j);
+            }
+        }
+    }
+}
+function isOne(cell) {
+    return cell === 1;
+}
