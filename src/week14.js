@@ -347,6 +347,7 @@ function main() {
         for (var i = 0; i < grid.length; i++) {
             for (var j = 0; j < grid[i].length; j++) {
                 if (isOne(grid[i][j])) {
+                    count = 0;
                     zeroCell(grid, i, j);
                     if (count > max) {
                         max = count;
@@ -362,12 +363,17 @@ function main() {
     }
 
     function zeroCell(matrix, i, j) {
-        if (i < 0 || j < 0 || i >= matrix.length || j >= matrix.length || !isOne(matrix[i][j])) return;
+        if (i < 0 || j < 0 || i >= matrix.length || j >= matrix[i].length || !isOne(matrix[i][j])) return;
+        matrix[i][j] = 0;
         count += 1;
         zeroCell(matrix, i+1, j);
         zeroCell(matrix, i-1, j);
         zeroCell(matrix, i, j+1);
         zeroCell(matrix, i, j-1);
+        zeroCell(matrix, i-1, j-1);
+        zeroCell(matrix, i-1, j+1);
+        zeroCell(matrix, i+1, j-1);
+        zeroCell(matrix, i+1, j+1);
     };
     connectedCells();
 
