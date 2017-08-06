@@ -339,19 +339,36 @@ function main() {
        grid[grid_i] = grid[grid_i].map(Number);
     }
 
-}
-
-function connectedCells() {
     var count = 0;
-    for (var i = 0; i < grid.length; i++) {
-        for (var j = 0; j < grid[i].length; j++) {
-            if (isOne(grid[i][j])) {
-                count += 1;
-                zeroCell(i, j);
+    var max = 0;
+
+    function connectedCells() {
+
+        for (var i = 0; i < grid.length; i++) {
+            for (var j = 0; j < grid[i].length; j++) {
+                if (isOne(grid[i][j])) {
+                    zeroCell(grid, i, j);
+                    if (count > max) {
+                        max = count;
+                    }
+                }
             }
         }
+        console.log(max);
     }
-}
-function isOne(cell) {
-    return cell === 1;
+
+    function isOne(cell) {
+        return cell === 1;
+    }
+
+    function zeroCell(matrix, i, j) {
+        if (i < 0 || j < 0 || i >= matrix.length || j >= matrix.length || !isOne(matrix[i][j])) return;
+        count += 1;
+        zeroCell(matrix, i+1, j);
+        zeroCell(matrix, i-1, j);
+        zeroCell(matrix, i, j+1);
+        zeroCell(matrix, i, j-1);
+    };
+    connectedCells();
+
 }
