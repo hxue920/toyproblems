@@ -422,7 +422,21 @@ function main() {
     var p = parseInt(readLine());
     for(var a0 = 0; a0 < p; a0++){
         var n = parseInt(readLine());
-
+        isPrime(n);
+    }
+    function isPrime(num) {
+        if (num < 2) {
+            console.log('Not prime');
+            return;
+        }
+        for (var i = 2; i <= num/2; i++) {
+            if (num % i === 0) {
+                console.log("Not prime");
+                return;
+            }
+        }
+        console.log("Prime");
+    }
 }
 
 // Recursion: Fibonacci Numbers
