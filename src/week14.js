@@ -489,12 +489,15 @@ function main() {
     var s = parseInt(readLine());
     for(var a0 = 0; a0 < s; a0++){
         var n = parseInt(readLine());
-        var answer = countStaircase(n);
+        var answer = countStaircase(n+1);
         console.log(answer);
     }
     function countStaircase(n) {
-        if (n < 0) return 0;
-        var result = countStaircase(n-1) + countStaircase(n-2) + countStaircase(n-3);
+        if (n <= 1) return n;
+        var result = 0;
+        for (var i = 1; i<=3 && i<=n; i++) {
+            result += countStaircase(n-i);
+        }
         return result;
     }
 }
