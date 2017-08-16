@@ -501,3 +501,54 @@ function main() {
         return result;
     }
 }
+// O(nm) solution for above;
+int countWaysUtil(int n, int m)
+{
+    int res[n];
+    res[0] = 1; res[1] = 1;
+    for (int i=2; i<n; i++)
+    {
+       res[i] = 0;
+       for (int j=1; j<=m && j<=i; j++)
+         res[i] += res[i-j];
+    }
+    return res[n-1];
+}
+
+// Returns number of ways to reach s'th stair
+int countWays(int s, int m)
+{
+    return countWaysUtil(s+1, m);
+}
+
+//DP: Coin Change
+process.stdin.resume();
+process.stdin.setEncoding('ascii');
+
+var input_stdin = "";
+var input_stdin_array = "";
+var input_currentline = 0;
+
+process.stdin.on('data', function (data) {
+    input_stdin += data;
+});
+
+process.stdin.on('end', function () {
+    input_stdin_array = input_stdin.split("\n");
+    main();
+});
+
+function readLine() {
+    return input_stdin_array[input_currentline++];
+}
+
+/////////////// ignore above this line ////////////////////
+
+function main() {
+    var n_temp = readLine().split(' ');
+    var n = parseInt(n_temp[0]);
+    var m = parseInt(n_temp[1]);
+    coins = readLine().split(' ');
+    coins = coins.map(Number);
+
+}
