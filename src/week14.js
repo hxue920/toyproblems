@@ -501,18 +501,18 @@ function main() {
         return result;
     }
 }
-// O(nm) solution for above;
-int countWaysUtil(int n, int m)
-{
-    int res[n];
-    res[0] = 1; res[1] = 1;
-    for (int i=2; i<n; i++)
-    {
-       res[i] = 0;
-       for (int j=1; j<=m && j<=i; j++)
-         res[i] += res[i-j];
+// Alternative O(nm) solution for above;
+function countStaircase(n) {
+    var result = [];
+    result[0] = 1;
+    result[1] = 1;
+    for ( var i=2; i < n; i++) {
+        result[i] = 0;
+        for (var j=1; j<=3 && j<=i; j++) {
+            result[i] += result[i-j];
+        }
     }
-    return res[n-1];
+    return result[n-1];
 }
 
 // Returns number of ways to reach s'th stair
