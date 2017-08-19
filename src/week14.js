@@ -550,7 +550,18 @@ function main() {
     var m = parseInt(n_temp[1]);
     coins = readLine().split(' ');
     coins = coins.map(Number);
-
+    function countCoins(coins, amount, coin_index) {
+        if (amount === 0) return 1;
+        if (coin_index >= coins.length) return 0;
+        var currentAmount = 0;
+        var result = 0;
+        while (currentAmount <= amount) {
+            var remainder = amount - currentAmount;
+            result += countCoins(coins, remainder, coin_index+1);
+            currentAmount += coin[index];
+        }
+        return result;
+    }
 }
 
 //Bit Manipulation: Lonely Integer
