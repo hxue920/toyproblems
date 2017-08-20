@@ -515,12 +515,6 @@ function countStaircase(n) {
     return result[n-1];
 }
 
-// Returns number of ways to reach s'th stair
-int countWays(int s, int m)
-{
-    return countWaysUtil(s+1, m);
-}
-
 //DP: Coin Change
 process.stdin.resume();
 process.stdin.setEncoding('ascii');
@@ -558,7 +552,7 @@ function main() {
         while (currentAmount <= amount) {
             var remainder = amount - currentAmount;
             result += countCoins(coins, remainder, coin_index+1);
-            currentAmount += coin[index];
+            currentAmount += coins[coin_index];
         }
         return result;
     }
@@ -593,3 +587,19 @@ function main() {
     a = a.map(Number);
 
 }
+
+function countCoins(coins, amount, coin_index, memo) {
+        if (amount === 0) return 1;
+        if (coin_index >= coins.length) return 0;
+        var key = amount + '-' + coin_index;
+        if (memo[key]) return memo[key];
+        var currentAmount = 0;
+        var result = 0;
+        while (currentAmount <= amount) {
+            var remainder = amount - currentAmount;
+            result += countCoins(coins, remainder, coin_index+1, memo);
+            currentAmount += coins[coin_index];
+        }
+        return result;
+    }
+console.log(countCoins([2,5,3,6], 10, 0));
