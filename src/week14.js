@@ -582,13 +582,13 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function main() {
-    var n = parseInt(readLine());
-    a = readLine().split(' ');
-    a = a.map(Number);
-
-}
-
-function countCoins(coins, amount, coin_index, memo) {
+    var n_temp = readLine().split(' ');
+    var n = parseInt(n_temp[0]);
+    var m = parseInt(n_temp[1]);
+    coins = readLine().split(' ');
+    coins = coins.map(Number);
+    var memo = {};
+    function countCoins(coins, amount, coin_index, memo) {
         if (amount === 0) return 1;
         if (coin_index >= coins.length) return 0;
         var key = amount + '-' + coin_index;
@@ -602,4 +602,5 @@ function countCoins(coins, amount, coin_index, memo) {
         }
         return result;
     }
-console.log(countCoins([2,5,3,6], 10, 0));
+    console.log(countCoins(coins, n, 0, memo))
+}
