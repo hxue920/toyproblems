@@ -590,13 +590,8 @@ function main() {
     a = readLine().split(' ');
     a = a.map(Number);
     var result;
-    while (a.length) {
-        var temp = a.shift();
-        for (var i = 0; i < a.lenght; i++) {
-            if (temp^a[i] === 1) {
-                result = temp;
-            }
-        }
+    for (var i = 0; i < a.length; i++) {
+        result^=a[i];
     }
     console.log(result);
 }
