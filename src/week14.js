@@ -544,18 +544,22 @@ function main() {
     var m = parseInt(n_temp[1]);
     coins = readLine().split(' ');
     coins = coins.map(Number);
-    function countCoins(coins, amount, coin_index) {
+    var memo = {};
+    function countCoins(coins, amount, coin_index, memo) {
         if (amount === 0) return 1;
         if (coin_index >= coins.length) return 0;
+        var key = amount + '-' + coin_index;
+        if (memo[key]) return memo[key];
         var currentAmount = 0;
         var result = 0;
         while (currentAmount <= amount) {
             var remainder = amount - currentAmount;
-            result += countCoins(coins, remainder, coin_index+1);
+            result += countCoins(coins, remainder, coin_index+1, memo);
             currentAmount += coins[coin_index];
         }
         return result;
     }
+    console.log(countCoins(coins, n, 0, memo))
 }
 
 //Bit Manipulation: Lonely Integer
@@ -582,25 +586,17 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function main() {
-    var n_temp = readLine().split(' ');
-    var n = parseInt(n_temp[0]);
-    var m = parseInt(n_temp[1]);
-    coins = readLine().split(' ');
-    coins = coins.map(Number);
-    var memo = {};
-    function countCoins(coins, amount, coin_index, memo) {
-        if (amount === 0) return 1;
-        if (coin_index >= coins.length) return 0;
-        var key = amount + '-' + coin_index;
-        if (memo[key]) return memo[key];
-        var currentAmount = 0;
-        var result = 0;
-        while (currentAmount <= amount) {
-            var remainder = amount - currentAmount;
-            result += countCoins(coins, remainder, coin_index+1, memo);
-            currentAmount += coins[coin_index];
+    var n = parseInt(readLine());
+    a = readLine().split(' ');
+    a = a.map(Number);
+    var result;
+    while (a.length) {
+        var temp = a.shift();
+        for (var i = 0; i < a.lenght; i++) {
+            if (temp^a[i] === 1) {
+                result = temp;
+            }
         }
-        return result;
     }
-    console.log(countCoins(coins, n, 0, memo))
+    console.log(result);
 }
