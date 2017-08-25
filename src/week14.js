@@ -619,7 +619,13 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function solve(grades){
-    // Complete this function
+    return grades.map(function(grade) {
+        if (grade < 38 || grade % 5 === 0 || grade % 5 < 3) {
+            return grade;
+        } else {
+            return grade + (5 - grade % 5);
+        }
+    })
 }
 
 function main() {
