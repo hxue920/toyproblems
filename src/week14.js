@@ -676,5 +676,19 @@ function main() {
     apple = apple.map(Number);
     orange = readLine().split(' ');
     orange = orange.map(Number);
+    var apples = apple.reduce(function(prev, curr) {
+        if (curr + a >= s && curr + a <= t) {
+            prev += 1;
+        }
+        return prev;
+    }, 0);
+    var oranges = orange.reduce(function(prev, curr) {
+        if (curr + b >= s && curr + b <= t) {
+            prev += 1;
+        }
+        return prev;
+    }, 0);
+    console.log(apples);
+    console.log(oranges);
 
 }
