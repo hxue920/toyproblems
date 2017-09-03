@@ -762,7 +762,7 @@ function readLine() {
 
 function getTotalX(a, b) {
     var count = 0;
-    for (var i = a[length-1]; i<=b[0]; i++) {
+    for (var i = a[a.length-1]; i<=b[0]; i++) {
         if(a.every(function(ele){return i%ele===0}) && b.every(function(ele){return ele%i===0})) {count += 1};
     }
     return count;
