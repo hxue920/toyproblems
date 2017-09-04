@@ -805,7 +805,19 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function getRecord(s){
-    // Complete this function
+    var max = min = s[0];
+    var countMax = countMin = 0;
+    for (var i = 1; i <= s.length; i++) {
+        if (s[i] > max) {
+            max = s[i];
+            countMax += 1;
+        }
+        if (s[i] < min) {
+            min = s[i];
+            countMin += 1;
+        }
+    }
+    return [countMax, countMin];
 }
 
 function main() {
