@@ -853,8 +853,22 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function solve(n, s, d, m){
-    // Complete this function
-}
+    var count = 0;
+    if (s.length === m) {
+        if (s[0] === d) {
+            return 1;
+        }
+    }
+    for (var i = 0; i<=s.length-2-m; i++) {
+        var total = 0;
+        for (var j = i; j <= i+m-1; j++) {
+            total += s[j];
+        }
+        if (total === d) {
+            count += 1;
+        }
+    }
+    return count;
 
 function main() {
     var n = parseInt(readLine());
