@@ -854,12 +854,12 @@ function readLine() {
 
 function solve(n, s, d, m){
     var count = 0;
-    if (s.length === m) {
+    if (n === m) {
         if (s[0] === d) {
             return 1;
         }
     }
-    for (var i = 0; i<=s.length-2-m; i++) {
+    for (var i = 0; i<=n-m; i++) {
         var total = 0;
         for (var j = i; j <= i+m-1; j++) {
             total += s[j];
