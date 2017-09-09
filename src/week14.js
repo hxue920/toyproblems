@@ -906,7 +906,15 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function divisibleSumPairs(n, k, ar) {
-    // Complete this function
+    var count = 0;
+    for (var i = 0; i <= ar.length-2; i++) {
+        for (var j = i+1; j <= ar.length-1; j++) {
+            if ((ar[i] + ar[j]) % k === 0) {
+                count += 1;
+            }
+        }
+    }
+    return count;
 }
 
 function main() {
