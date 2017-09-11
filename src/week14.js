@@ -952,7 +952,22 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function migratoryBirds(n, ar) {
-    // Complete this function
+    var obj = {};
+    var max = 0;
+    var result = 0;
+    ar.sort().forEach(function(ele) {
+        if (!obj[ele]) {
+            obj[ele] = 0;
+        }
+        obj[ele] += 1;
+    });
+    for (var key in obj) {
+        if(obj[key] > max) {
+            max = obj[key];
+            result = parseInt(key);
+        }
+    }
+    return result;
 }
 
 function main() {
