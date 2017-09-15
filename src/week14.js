@@ -1018,3 +1018,13 @@ function main() {
     process.stdout.write(""+result+"\n");
 
 }
+
+//two sum
+var twoSum = function(nums, target) {
+    for (var i = 0; i<nums.length; i++) {
+        var tempIdx = nums.indexOf(target-nums[i]);
+        if (tempIdx !== -1 && tempIdx !== i) {
+            return [i, tempIdx];
+        }
+    }
+};
