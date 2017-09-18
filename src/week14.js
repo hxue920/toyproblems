@@ -1053,7 +1053,15 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function bonAppetit(n, k, b, ar) {
-    // Complete this function
+    var total = ar.reduce(function(pre, curr) {
+        return pre + curr;
+    });
+    var share = (total - ar[k]) / 2;
+    if ( share === b) {
+        return 'Bon Appetit';
+    } else {
+        return b - share;
+    }
 }
 
 function main() {
