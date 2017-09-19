@@ -1100,7 +1100,17 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function sockMerchant(n, ar) {
-    // Complete this function
+    var count = 0;
+    var obj = {};
+    ar.forEach(function(ele) {
+        if (!obj[ele]) {
+            obj[ele] = true;
+        } else {
+            count += 1;
+            delete obj[ele];
+        }
+    });
+    return count;
 }
 
 function main() {
