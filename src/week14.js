@@ -1146,7 +1146,9 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function solve(n, p){
-    // Complete this function
+    var total = Math.ceil((n+1) / 2);
+    var page = Math.ceil((p+1) / 2);
+    return total - page >= page ? page - 1: total - page;
 }
 
 function main() {
