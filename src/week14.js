@@ -1161,7 +1161,25 @@ function main() {
 
 //Counting Valleys
 function processData(input) {
-    //Enter your code here
+    var ar = input.split("\n")[1].split("");
+    var count = slope = 0;
+    var valley = false;
+    for (var i = 0; i < ar.length; i++) {
+        if (ar[i] === 'U') {
+            slope += 1;
+        } else {
+            slope -= 1;
+        }
+        if (slope < 0 && !valley) {
+            valley = true;
+        }
+        if (slope === 0 && valley) {
+
+            count += 1;
+            valley = false;
+        }
+    }
+    console.log(count);
 }
 
 process.stdin.resume();
