@@ -1217,7 +1217,16 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function getMoneySpent(keyboards, drives, s){
-    // Complete this function
+    var max = 0;
+    for (var i = 0; i < keyboards.length; i++) {
+        for (var j = 0; j < drives.length; j++) {
+            var total = keyboards[i] + drives[j];
+            if (total > max && total <= s) {
+                max = total;
+            }
+        }
+    }
+    return max > 0 ? max : -1;
 }
 
 function main() {
