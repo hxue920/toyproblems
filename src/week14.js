@@ -1274,6 +1274,15 @@ function main() {
         var x = parseInt(x_temp[0]);
         var y = parseInt(x_temp[1]);
         var z = parseInt(x_temp[2]);
+        var disX = Math.abs(x-z);
+        var disY = Math.abs(y-z);
+        if (disX > disY) {
+            console.log("Cat B");
+        } else if (disX < disY) {
+            console.log("Cat A");
+        } else {
+            console.log("Mouse C");
+        }
     }
 
 }
