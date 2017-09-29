@@ -1316,6 +1316,37 @@ function main() {
        s[s_i] = readLine().split(' ');
        s[s_i] = s[s_i].map(Number);
     }
-    //  Print the minimum cost of converting 's' into a magic square
+    var squares = [
+            [[8, 1, 6], [3, 5, 7], [4, 9, 2]],
+            [[6, 1, 8], [7, 5, 3], [2, 9, 4]],
+            [[4, 9, 2], [3, 5, 7], [8, 1, 6]],
+            [[2, 9, 4], [7, 5, 3], [6, 1, 8]],
+            [[8, 3, 4], [1, 5, 9], [6, 7, 2]],
+            [[4, 3, 8], [9, 5, 1], [2, 7, 6]],
+            [[6, 7, 2], [1, 5, 9], [8, 3, 4]],
+            [[2, 7, 6], [9, 5, 1], [4, 3, 8]],
+            ];
+    function flatten(array) {
+        var result = [];
+        for (var i = 0; i<array.length; i++) {
+            result = result.concat(array[i]);
+        }
+        return result;
+    }
+    var min;
+    var sFlat = flatten(s);
+    for (var i = 0; i < squares.length; i++) {
+        var temp = flatten(squares[i]);
+        var diff = 0;
+        for (var j = 0; j < temp.length; j++) {
+            diff += Math.abs(sFlat[j] - temp[j]);
+        }
+        if (min === undefined) {
+            min = diff;
+         } else if (min > diff) {
+             min = diff;
+         }
+    }
+    console.log(min);
 
 }
