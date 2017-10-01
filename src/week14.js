@@ -1378,5 +1378,21 @@ function main() {
     var n = parseInt(readLine());
     a = readLine().split(' ');
     a = a.map(Number);
+    var sorted = a.sort();
+    var result = 0;
+    for (var i = 0; i < sorted.length-1; i++) {
+        var max = 1;
+        for (var j = i+1; j < sorted.length; j++) {
+            if (Math.abs(sorted[i] - sorted[j]) <= 1) {
+                max+=1;
+            } else {
+                break;
+            }
+        }
+        if (max > result) {
+            result = max;
+        }
+    }
+    console.log(result);
 
 }
