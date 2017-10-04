@@ -1427,6 +1427,18 @@ function main() {
     var m = parseInt(readLine());
     alice = readLine().split(' ');
     alice = alice.map(Number);
-    // your code goes here
+    var lastIndex = scores.length;
+    for (var j = 0; j < alice.length; j++) {
+        var rank = 0;
+        for (var i = 0; i < lastIndex; i++) {
+            if (scores[i] <= alice[j]) {
+                lastIndex = i;
+                break;
+            } else if (scores[i] < scores[i-1] || scores[i-1] === undefined) {
+                rank += 1;
+            }
+        }
+        console.log(rank+1);
+    }
 
 }
