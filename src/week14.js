@@ -1442,3 +1442,18 @@ function main() {
     }
 
 }
+
+
+function findMax(array) {
+    var min = array[0];
+    var maxDiff = array[1] - array[0];
+    for (var i = 1; i < array.length; i++) {
+        if (array[i] - min > maxDiff) {
+            maxDiff = array[i] - min;
+        }
+        if (array[i] < min) {
+            min = array[i];
+        }
+    }
+    return maxDiff
+}
