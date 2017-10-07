@@ -1487,6 +1487,10 @@ function main() {
     var k = parseInt(n_temp[1]);
     height = readLine().split(' ');
     height = height.map(Number);
-    // your code goes here
-
+    var max = Math.max.apply(null, height);
+    if (max < k) {
+        console.log(0);
+    } else {
+        console.log(max - k);
+    }
 }
