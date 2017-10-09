@@ -1524,3 +1524,37 @@ function main() {
     var word = readLine();
 
 }
+
+//Clone Graph
+/**
+ * Definition for undirected graph.
+ * function UndirectedGraphNode(label) {
+ *     this.label = label;
+ *     this.neighbors = [];   // Array of UndirectedGraphNode
+ * }
+ */
+
+/**
+ * @param {UndirectedGraphNode} graph
+ * @return {UndirectedGraphNode}
+ */
+var cloneGraph = function(graph, node) {
+    var copy = {};
+    var queue = [node];
+
+    while (queue.length > 0) {
+        var currNode = queue.shift();
+        copy[currNode.label] = new UndirectedGraphNode(currNode.label);
+
+        for (var i = 0; i < currNode.neighbors.length; i++) {
+            if (!copy[currNode.neighbors[i].label]) {
+                queue.push(currNode.neighbors[i]);
+            }
+            var neighbor = new UndirectedGraphNode(currNode.neighbors[i].label)
+            copy[currNode.label].neighbors.push(neighbor);
+        }
+    }
+    return copy[currNode.label];
+
+
+};
