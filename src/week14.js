@@ -1558,3 +1558,20 @@ var cloneGraph = function(graph, node) {
 
 
 };
+
+//Course Schedule
+/**
+ * @param {number} numCourses
+ * @param {number[][]} prerequisites
+ * @return {boolean}
+ */
+var canFinish = function(numCourses, prerequisites) {
+    var graph = {};
+    var visited = [];
+    for (var i = 0; i < numCourses.length; i++) {
+        graph[i] = [];
+    }
+    for (var j = 0; j < prerequisites.length; j++) {
+        graph[prerequisites[i][1]].push(prerequisites[i][0]);
+    }
+};
