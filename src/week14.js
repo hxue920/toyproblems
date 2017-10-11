@@ -1522,6 +1522,14 @@ function main() {
     h = readLine().split(' ');
     h = h.map(Number);
     var word = readLine();
+    var max = 0;
+    for (var i = 0; i<word.length; i++) {
+        var temp = h[word.charCodeAt(i)-97];
+        if (temp > max) {
+            max = temp;
+        }
+    }
+    console.log(word.length*max);
 
 }
 
