@@ -1611,6 +1611,19 @@ function main() {
     var t = parseInt(readLine());
     for(var a0 = 0; a0 < t; a0++){
         var n = parseInt(readLine());
+        if (n === 0) {
+            console.log(1);
+            continue;
+        }
+        var height = 1;
+        for (var i = 1; i<=n; i++) {
+            if (i%2===0) {
+                height+=1;
+            } else {
+                height*=2;
+            }
+        }
+        console.log(height);
     }
 
 }
