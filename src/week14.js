@@ -1659,6 +1659,14 @@ function main() {
         var k = parseInt(n_temp[1]);
         a = readLine().split(' ');
         a = a.map(Number);
+        var students = a.filter(function(ele) {
+            return ele <= 0;
+        });
+        if (students.length >= k) {
+            console.log("NO");
+        } else {
+            console.log("YES");
+        }
     }
 
 }
