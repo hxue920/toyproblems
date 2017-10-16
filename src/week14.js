@@ -1673,7 +1673,14 @@ function main() {
 
 //beautiful days at the movies
 function processData(input) {
-    //Enter your code here
+    var ar = input.split(" ");
+    var k = ar[2];
+    var count = 0;
+    for (var i = parseInt(ar[0]); i <= parseInt(ar[1]); i++) {
+        var reverse = (i + '').split('').reverse().join('');
+        if (Math.abs(i - reverse) % k === 0) count += 1;
+    }
+    console.log(count);
 }
 
 process.stdin.resume();
