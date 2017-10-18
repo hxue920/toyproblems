@@ -1694,9 +1694,15 @@ process.stdin.on("end", function () {
    processData(_input);
 });
 
-//
+//Viral Advertising
 function processData(input) {
-
+    var shares = 2;
+    var total = 2
+    for (var i = 1; i < input; i++) {
+        shares = Math.floor(shares * 3 / 2);
+        total += shares;
+    }
+    console.log(total);
 }
 
 process.stdin.resume();
