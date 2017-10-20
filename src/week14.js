@@ -1581,7 +1581,7 @@ var canFinish = function(numCourses, prerequisites) {
         graph[i] = {index: i, children: []};
     }
     for (var j = 0; j < prerequisites.length; j++) {
-        graph[prerequisites[i][1]].children.push(prerequisites[i][0]);
+        graph[prerequisites[i][1]].children.push(graph[prerequisites[i][0]]);
     }
 
     for (var k = 0; k < numCourses; k++) {
@@ -1596,12 +1596,14 @@ var canFinish = function(numCourses, prerequisites) {
     function dfs(node) {
         visited[node.index] = true;
         path[node.index] = true;
-        for (var i = 0; i < node.children.length; i++) {
-            if (visited[node.children[i].index]) {
-                return false;
-            }
-            if (dfs(node.children[i])) {
-                return false;
+        if (node.children.length > 0) {
+            for (var i = 0; i < node.children.length; i++) {
+                if (path[node.children[i].index]) {
+                    return false;
+                }
+                if (dfs(graph[node.children[i].index])) {
+                    return false;
+                }
             }
         }
         path[node.index] = false;
