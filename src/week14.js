@@ -1575,12 +1575,37 @@ var cloneGraph = function(graph, node) {
  */
 var canFinish = function(numCourses, prerequisites) {
     var graph = {};
-    var visited = [];
-    for (var i = 0; i < numCourses.length; i++) {
-        graph[i] = [];
+    var visited = {};
+    var path = {};
+    for (var i = 0; i < numCourses; i++) {
+        graph[i] = {index: i, children: []};
     }
     for (var j = 0; j < prerequisites.length; j++) {
-        graph[prerequisites[i][1]].push(prerequisites[i][0]);
+        graph[prerequisites[i][1]].children.push(prerequisites[i][0]);
+    }
+
+    for (var k = 0; k < numCourses; k++) {
+        if (!visited[k]) {
+            if (!dfs(graph[k])) {
+                return false;
+            }
+        }
+    }
+    return true;
+
+    function dfs(node) {
+        visited[node.index] = true;
+        path[node.index] = true;
+        for (var i = 0; i < node.children.length; i++) {
+            if (visited[node.children[i].index]) {
+                return false;
+            }
+            if (dfs(node.children[i])) {
+                return false;
+            }
+        }
+        path[node.index] = false;
+        return true;
     }
 };
 
