@@ -1767,7 +1767,14 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function saveThePrisoner(n, m, s){
-    // Complete this function
+    var temp = m%n+s-1;
+    if (temp > n) {
+        return temp - n;
+    } else if (temp === 0) {
+      return n;
+    } else {
+        return temp;
+    }
 }
 
 function main() {
