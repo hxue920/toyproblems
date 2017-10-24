@@ -1789,3 +1789,30 @@ function main() {
     }
 
 }
+
+function maxDifference(arr) {
+    var min = 0;
+    var maxDiff = 0;
+    for (var i = 0; i < arr.length-1; i++) {
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+        if (min < arr[i+1]) {
+            if (maxDiff < arr[i+1] - min) {
+                maxDiff = arr[i+1] - min;
+            }
+        }
+    }
+    return maxDiff;
+}
+
+//permutation equation
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+var input = "";
+process.stdin.on("data", function (chunk) {
+    input += chunk;
+});
+process.stdin.on("end", function () {
+    // now we can read/parse input
+});
