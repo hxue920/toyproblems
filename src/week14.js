@@ -1848,3 +1848,37 @@ function main() {
     c = c.map(Number);
 
 }
+
+// price window subranges
+function diffSub(start, end) {
+    let incSub = 0;
+    let decSub = 0;
+    let totalIncSub = 0;
+    let totalDecSub = 0;
+    let prev;
+
+    for (let i = start; i <= end; i++) {
+        if (i === 0) {
+            prev = map[i];
+            continue;
+        }
+        if (prev < map[i]) {
+            if (incSub === 0) {
+                incSub += 1;
+            } else {
+                incSub += incSub + 1;
+            }
+            decSub = 0;
+            totalIncSub += incSub;
+        } else if (prev > map[i]) {
+            if (decSub === 0) {
+                decSub += 1;
+            } else {
+                decSub += decSub + 1;
+            }
+            desSub = 0;
+            totalDecSub += decSub
+        }
+    };
+    return totalIncSub - totalDecSub;
+}
