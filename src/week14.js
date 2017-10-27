@@ -1850,7 +1850,7 @@ function main() {
 }
 
 // price window subranges
-function diffSub(start, end) {
+function diffSubranges(start, end) {
     let incSub = 0;
     let decSub = 0;
     let totalIncSub = 0;
