@@ -1867,21 +1867,19 @@ function diffSub() {
             }
 
             if (prev < map[i]) {
-                if (incSub !== 0) {
-                    incSub += 1;
-                } else {
+                incSub += 1;
+                if (incSub > 1) {
                     incSub += incSub + 1;
+                    decSub = 0;
+                    totalIncSub += incSub;
                 }
-                decSub = 0;
-                totalIncSub += incSub;
             } else if (prev > map[i]) {
-                if (decSub !== 0) {
-                    decSub += 1;
-                } else {
+                decSub += 1;
+                if (decSub > 1) {
                     decSub += decSub + 1;
+                    incSub = 0;
+                    totalDecSub += decSub;
                 }
-                desSub = 0;
-                totalDecSub += decSub;
             } else {
                 incSub = 0;
                 decSub = 0;
@@ -1890,6 +1888,10 @@ function diffSub() {
         return totalIncSub - totalDecSub;
     }
 
-    result = subDiff(2, 4);
-    return result;
+
+    for (let j = 0; j < 3; j++) {
+        let result = subDiff(0+j, 2+j);
+        console.log(result);
+    }
+
 }
