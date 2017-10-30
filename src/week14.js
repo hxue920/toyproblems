@@ -1850,38 +1850,56 @@ function main() {
 }
 
 // price window subranges
-function diffSub() {
+process.stdin.resume();
+process.stdin.setEncoding('ascii');
+
+let _input = '';
+
+process.stdin.on('data', function(data) {
+    _input += data;
+})
+process.stdin.on('end', function() {
+    subrangeDiff(_input);
+})
+
+
+function subrangeDiff(input) {
+    let inputArray = input.split('\n');
+    let n = parseInt(inputArray[0].split(' ')[0]);
+    let k = parseInt(inputArray[0].split(' ')[1]);
+    let mapArray = inputArray[1].split(' ');
+
     let prev;
     let result;
 
-    function subDiff(start, end) {
+    function solution(start, end) {
         let incSub = 0;
         let decSub = 0;
         let totalIncSub = 0;
         let totalDecSub = 0;
 
-        for (let i = start; i <= end; i++) {
-            if (i === start) {
-                prev = map[start];
-                continue;
-            }
+        for (let i = start+1; i <= end; i++) { //loop through each price within the window, note i starts at the second price
 
-            if (prev < map[i]) {
-                incSub += 1;
-                if (incSub > 1) {
-                    incSub += incSub + 1;
-                    decSub = 0;
-                    totalIncSub += incSub;
+            prev = mapArray[i-1];
+
+            if (prev < mapArray[i]) { //if previous price less than current price, increment incSub and add to totalIncSub
+                if (incSub === 0) {
+                    incSub = 1;
+                } else {
+                    incSub += 1;
                 }
-            } else if (prev > map[i]) {
-                decSub += 1;
-                if (decSub > 1) {
-                    decSub += decSub + 1;
-                    incSub = 0;
-                    totalDecSub += decSub;
+                decSub = 0; //reset decreasing subrange count when increasing subrange is detected
+                totalIncSub += incSub;
+            } else if (prev > mapArray[i]) { //if previous price is greater than current price, increment decSub and add to totalDecSub
+                if (decSub === 0) {
+                    decSub = 1;
+                } else {
+                    decSub += 1;
                 }
+                incSub = 0; //reset increasing subrange count when decreasing subrange is detected
+                totalDecSub += decSub;
             } else {
-                incSub = 0;
+                incSub = 0; //reset both incSub and decSub count when price stays the same
                 decSub = 0;
             }
         };
@@ -1889,8 +1907,8 @@ function diffSub() {
     }
 
 
-    for (let j = 0; j < 3; j++) {
-        let result = subDiff(0+j, 2+j);
+    for (let j = 0; j < (n-k+1); j++) { //looping through each window and calling solution sub-routine
+        result = solution(0+j, k-1+j);
         console.log(result);
     }
 
