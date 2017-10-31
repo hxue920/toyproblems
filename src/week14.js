@@ -1899,8 +1899,16 @@ function subrangeDiff(input) {
                 incSub = 0; //reset increasing subrange count when decreasing subrange is detected
                 totalDecSub += decSub;
             } else {
-                incSub = 0; //reset both incSub and decSub count when price stays the same
-                decSub = 0;
+                if (incSub === 0) {
+                    incSub = 1;
+                    decSub += 1;
+                }
+                if (decSub === 0) {
+                    incSub = 1;
+                    decSub += 1;
+                }
+                totalIncSub += incSub;
+                totalDecSub += decSub;
             }
         };
         return totalIncSub - totalDecSub;
