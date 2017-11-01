@@ -1921,3 +1921,9 @@ function subrangeDiff(input) {
     }
 
 }
+
+//subrangeDiff O(n) approach
+//Keep track of increasing and decreasing ranges in a list(array?)
+//For first window calculate the number of subranges using formula subranges = n(n+1)/2 where n is the number of consecutive inc or dec numbers
+//for each remaining windows, only calculate the the subrange of the first run in the last window minus the first number and last run in the last window plus the next number
+
