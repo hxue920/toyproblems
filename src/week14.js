@@ -1928,21 +1928,29 @@ function subrangeDiff(input) {
 //for each remaining windows, only calculate the the subrange of the first run in the last window minus the first number and last run in the last window plus the next number
 
 function subrangeDiffOptimized(input) {
-    function findSub(start, end) {
-        let incList = [];
-        let decList = [];
+    function findSub(start, end, comparator) {
+        let list = [];
         let first = last = start;
         for (let i = start+1; i <= end; i++) {
-            if (map[last] < map[i]) {
+            if (comparator(map[last], map[i]) {
                 last = i;
             } else {
                 if (last != first) {
-                    incList.push([first, last]);
+                    list.push([first, last]);
                 }
                 first = last = i;
             }
         }
-        if (first != last) incList.push(first, last);
-        return incList;
+        if (first != last) list.push(first, last);
+        return list;
+    }
+    function sumSub(list) {
+        let result;
+        let diff;
+        list.forEach(function(range) {
+            diff = range[1] - range[0];
+            result += diff*(diff + 1) / 2;
+        });
+        return result;
     }
 }
