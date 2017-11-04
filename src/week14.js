@@ -1944,6 +1944,12 @@ function subrangeDiffOptimized(input) {
         if (first != last) list.push(first, last);
         return list;
     }
+    function findSubComparator(prev, curr) {
+        return prev < curr ? true : false;
+    }
+    function decSubComparator(prev, curr) {
+        return prev > curr ? true : false;
+    }
     function sumSub(list) {
         let result;
         let diff;
@@ -1952,5 +1958,10 @@ function subrangeDiffOptimized(input) {
             result += diff*(diff + 1) / 2;
         });
         return result;
+    }
+    function handleWindowShift(start, end, sum, list, comparator) {
+        if (list.length === 0) {
+            findSub(start+1, end+1, )
+        }
     }
 }
