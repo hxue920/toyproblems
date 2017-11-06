@@ -1961,7 +1961,19 @@ function subrangeDiffOptimized(input) {
     }
     function handleWindowShift(start, end, sum, list, comparator) {
         if (list.length === 0) {
-            findSub(start+1, end+1, )
+            let newList = findSub(start+1, end+1, );
+            let newSum = sumSub(newList);
+            return newList, newSum;
+        }
+        let firstSub = list[0];
+        let lastSub = list[-1];
+        if (firstSub[0] === start) {
+            sum -= firstSub[1] - firstSub[0];
+            list[0][0] += 1;
+        }
+        if (lastSub[1] === end) {
+
         }
     }
+
 }
