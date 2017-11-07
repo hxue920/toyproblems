@@ -1968,12 +1968,20 @@ function subrangeDiffOptimized(input) {
         let firstSub = list[0];
         let lastSub = list[-1];
         if (firstSub[0] === start) {
-            sum -= firstSub[1] - firstSub[0];
+            sum -= list[0][1] - list[0][0];
             list[0][0] += 1;
         }
-        if (lastSub[1] === end) {
-
+        if (lastSub[1] === end - 1) {
+            if (map[end] >= map[end-1]) {
+                sum += list[-1][1] - list[-1][0] + 1;
+                list[-1][1] += 1;
+            }
+        } else if (map[end] >= map[end-1]) {
+            list.push([end-1, end]);
+            sum += 1;
         }
+        if (list[0][1] - list[0][0] === 0) list.shift();
+        return sum, list;
     }
 
 }
