@@ -1991,11 +1991,13 @@ function subrangeDiffOptimized(input) {
         });
         return result;
     }
-    function handleWindowShift(start, end, sum, list, comparator) {
+    function handleWindowShift(start, end, sumList, comparator) {
+        let list = sumList[0];
+        let sum = sumList[1];
         if (list.length === 0) {
             let newList = findSub(start+1, end+1, );
             let newSum = sumSub(newList);
-            return newList, newSum;
+            return [newList, newSum];
         }
         let firstSub = list[0];
         let lastSub = list[-1];
@@ -2013,7 +2015,7 @@ function subrangeDiffOptimized(input) {
             sum += 1;
         }
         if (list[0][1] - list[0][0] === 0) list.shift();
-        return sum, list;
+        return [list, sum];
     }
 
 }
