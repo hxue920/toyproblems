@@ -1806,7 +1806,7 @@ function maxDifference(arr) {
     return maxDiff;
 }
 
-//permutation equation
+//Sequence Equation
 process.stdin.resume();
 process.stdin.setEncoding("ascii");
 var input = "";
@@ -1814,8 +1814,19 @@ process.stdin.on("data", function (chunk) {
     input += chunk;
 });
 process.stdin.on("end", function () {
-    // now we can read/parse input
+    sequenceEq(input);
 });
+function sequenceEq(input) {
+    var arr = input.split('\n')[1].split(' ');
+    var x = 1;
+
+    for (var i = 0; i < arr.length; i++) {
+      var index = arr.indexOf(x+"")+1;
+      console.log(arr.indexOf(index+"") + 1);
+      x += 1;
+
+    }
+}
 
 //jumping on the clouds revisited
 process.stdin.resume();
