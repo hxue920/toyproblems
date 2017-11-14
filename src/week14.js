@@ -1857,7 +1857,19 @@ function main() {
     var k = parseInt(n_temp[1]);
     c = readLine().split(' ');
     c = c.map(Number);
+    var i = 0;
+    var energy = 100;
+    do {
+       if (c[(i+k) % n] === 0) {
+            energy -= 1;
+        } else {
+            energy -= 3;
+        }
+        i += k;
+    }
+    while (i % n !== 0);
 
+    console.log(energy);
 }
 
 //find digits
