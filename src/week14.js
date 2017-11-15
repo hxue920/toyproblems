@@ -2135,3 +2135,7 @@ function subrangeDiffOptimized(input) {
 
  }
 
+//bitwise get sum
+function getSum(a, b) {
+    return b === 0 ? a : getSum(a^b, (a&b) << 1);
+}
