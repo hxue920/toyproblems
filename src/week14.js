@@ -1899,8 +1899,19 @@ function main() {
     var t = parseInt(readLine());
     for(var a0 = 0; a0 < t; a0++){
         var n = parseInt(readLine());
+        solve(n);
     }
 
+}
+function solve(num) {
+    var arr = num.toString().split("");
+    var count = 0;
+    arr.forEach(function(ele) {
+        if (num % parseInt(ele) === 0) {
+            count += 1;
+        }
+    });
+    console.log(count);
 }
 
 //Extra Length Factorial
