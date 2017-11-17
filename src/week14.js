@@ -1971,19 +1971,25 @@ function main() {
     var k = parseInt(readLine());
     var action = 0;
 
-    if (k > t.length && k > s.length) {
-        console.log('Yes');
-        return;
-    }
     while (s.length) {
         if (t.includes(s) && t.indexOf(s) === 0) break;
         s = s.slice(0, -1);
         action += 1;
     }
-    if ((k - action) >= (t.length - s.length)) {
+    if ((k - action) === (t.length - s.length)) {
         console.log('Yes');
+        return;
+    } else if ((k-action) > (t.length - s.length)) {
+        if ((k-action)%2 === (t.length-s.length)%2 || s.length === 0 || t.length === s.length) {
+            console.log('Yes');
+            return;
+        } else {
+            console.log('No');
+            return;
+        }
     } else {
         console.log('No');
+        return;
     }
 
 }
