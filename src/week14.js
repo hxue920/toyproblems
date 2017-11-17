@@ -1969,6 +1969,22 @@ function main() {
     var s = readLine();
     var t = readLine();
     var k = parseInt(readLine());
+    var action = 0;
+
+    if (k > t.length && k > s.length) {
+        console.log('Yes');
+        return;
+    }
+    while (s.length) {
+        if (t.includes(s) && t.indexOf(s) === 0) break;
+        s = s.slice(0, -1);
+        action += 1;
+    }
+    if ((k - action) >= (t.length - s.length)) {
+        console.log('Yes');
+    } else {
+        console.log('No');
+    }
 
 }
 
