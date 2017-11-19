@@ -1914,33 +1914,39 @@ function solve(num) {
     console.log(count);
 }
 
-//Extra Length Factorial
+//Sherlock and Squares
+function processData(input) {
+    var arr = input.split('\n');
+    var ranges = [];
+    for (var i = 1; i < arr.length; i++) {
+        ranges.push(arr[i].split(' '));
+    }
+    for (var j = 0; j < ranges.length; j++) {
+        var start = parseInt(ranges[j][0])
+        var end = parseInt(ranges[j][1])
+        if ((end - start) === 0) {
+            if (Math.sqrt(end) % 1 === 0) {
+                console.log(1);
+            } else {
+                console.log(0);
+            }
+        } else {
+            console.log(Math.floor(Math.sqrt(parseInt(ranges[j][1]))) - Math.ceil(Math.sqrt(parseInt(ranges[j][0]))) + 1);
+        }
+
+    }
+}
+
 process.stdin.resume();
-process.stdin.setEncoding('ascii');
-
-var input_stdin = "";
-var input_stdin_array = "";
-var input_currentline = 0;
-
-process.stdin.on('data', function (data) {
-    input_stdin += data;
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
 });
 
-process.stdin.on('end', function () {
-    input_stdin_array = input_stdin.split("\n");
-    main();
+process.stdin.on("end", function () {
+   processData(_input);
 });
-
-function readLine() {
-    return input_stdin_array[input_currentline++];
-}
-
-/////////////// ignore above this line ////////////////////
-
-function main() {
-    var n = parseInt(readLine());
-
-}
 
 //Append and Delete
 process.stdin.resume();
