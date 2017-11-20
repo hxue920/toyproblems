@@ -2032,6 +2032,23 @@ function main() {
     var d2 = parseInt(d2_temp[0]);
     var m2 = parseInt(d2_temp[1]);
     var y2 = parseInt(d2_temp[2]);
+    if (y1 === y2) {
+        if (m1 === m2) {
+            if (d1 === d2 || d1 < d2) {
+                console.log(0);
+            } else {
+                console.log((d1 - d2) * 15)
+            }
+        } else if (m1 < m2) {
+            console.log(0);
+        } else {
+            console.log((m1 - m2) * 500);
+        }
+    } else if (y1 < y2) {
+        console.log(0);
+    } else {
+        console.log(10000)
+    }
 
 }
 
