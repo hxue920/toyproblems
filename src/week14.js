@@ -2223,5 +2223,17 @@ function main() {
     var n = parseInt(readLine());
     arr = readLine().split(' ');
     arr = arr.map(Number);
+    var arrSorted = arr.sort(function(a, b) { return a - b;});
+    var min;
+    while(arrSorted.length) {
+        console.log(arrSorted.length);
+        min = arrSorted[0];
+        arrSorted = arrSorted.reduce(function(prev, curr) {
+            if (curr - min > 0) {
+                prev.push(curr - min);
+            }
+            return prev;
+        }, []);
+    }
 
 }
