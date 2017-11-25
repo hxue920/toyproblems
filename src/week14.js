@@ -2240,7 +2240,38 @@ function main() {
 
 //Non-Divisible Subset
 function processData(input) {
-    //code here
+    var k = parseInt(input.split('\n')[0].split(' ')[1]);
+    var arr = input.split('\n')[1].split(' ');
+    var obj = {};
+    var key;
+    var result = 0;
+    for (var i = 0; i < arr.length; i++) {
+        key = parseInt(arr[i]) % k
+        if (obj[key] === undefined) {
+            obj[key] = new Set([arr[i]]);
+        } else {
+            obj[key].add(arr[i]);
+        }
+    }
+
+    for (var prop in obj) {
+        if (obj[prop] !== 'checked') {
+            if (obj[k-parseInt(prop)] && k - parseInt(prop) !== parseInt(prop)) {
+                result += Math.max(obj[prop].size, obj[k - parseInt(prop)].size);
+                obj[prop] = 'checked';
+                obj[k - parseInt(prop)] = 'checked';
+            } else if (!obj[k-parseInt(prop)] && prop !== '0') {
+                result += obj[prop].size;
+                obj[prop] = 'checked';
+            } else {
+                result += 1;
+                obj[prop] = 'checked';
+            }
+        } else {
+            continue;
+        }
+    }
+    console.log(result);
 }
 
 process.stdin.resume();
