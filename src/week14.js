@@ -2311,5 +2311,17 @@ function readLine() {
 function main() {
     var s = readLine();
     var n = parseInt(readLine());
+    var num = Math.floor(n/s.length);
+    var reminder = n % s.length;
+    console.log(num * countA(s, s.length) + countA(s, reminder));
+}
 
+function countA(str, endIndex) {
+    var count = 0;
+    for (var i = 0; i < endIndex; i++) {
+        if (str[i] === 'a') {
+            count += 1;
+        }
+    }
+    return count;
 }
