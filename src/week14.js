@@ -2353,5 +2353,15 @@ function main() {
     var n = parseInt(readLine());
     c = readLine().split(' ');
     c = c.map(Number);
-
+    var steps = 0;
+    var i = 0;
+    while (i != c.length-1) {
+        if (c[i+2] === 0) {
+            i += 2;
+        } else {
+            i += 1;
+        }
+        steps += 1;
+    }
+    console.log(steps);
 }
