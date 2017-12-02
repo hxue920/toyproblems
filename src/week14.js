@@ -2368,7 +2368,19 @@ function main() {
 
 //Equalize the Array
 function processData(input) {
-    //Enter your code here
+    var arr = input.split('\n')[1].split(' ');
+    var max;
+    var obj = {};
+    arr.forEach(function(ele) {
+        if (obj[ele] === undefined) {
+            obj[ele] = 0;
+        }
+        obj[ele] += 1;
+        if (max === undefined || obj[max] < obj[ele]) {
+            max = ele;
+        }
+    });
+    console.log(arr.length - obj[max]);
 }
 
 process.stdin.resume();
