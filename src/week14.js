@@ -2422,13 +2422,71 @@ function main() {
     var n = parseInt(n_temp[0]);
     var k = parseInt(n_temp[1]);
     var rQueen_temp = readLine().split(' ');
-    var rQueen = parseInt(rQueen_temp[0]);
-    var cQueen = parseInt(rQueen_temp[1]);
+    var rQueen = parseInt(rQueen_temp[0])-1;
+    var cQueen = parseInt(rQueen_temp[1])-1;
+    var matrix = [];
+    for (var i = n - 1; i >= 0; i--) {
+        matrix[i] = [];
+        for (var j = 0; j < n; j++) {
+            matrix[i][j] = undefined;
+        }
+    }
     for(var a0 = 0; a0 < k; a0++){
         var rObstacle_temp = readLine().split(' ');
-        var rObstacle = parseInt(rObstacle_temp[0]);
-        var cObstacle = parseInt(rObstacle_temp[1]);
-        // your code goes here
+        var rObstacle = parseInt(rObstacle_temp[0])-1;
+        var cObstacle = parseInt(rObstacle_temp[1])-1;
+        matrix[rObstacle][cObstacle] = 1;
     }
+    var count = 0;
+    checkLeft(rQueen, cQueen-1, matrix, count);
+    checkRight(rQueen, cQueen+1, matrix, count);
+    checkUp(rQueen+1, cQueen, matrix, count);
+    checkDown(rQueen-1, cQueen, matrix, count);
+    checkUpLeft(rQueen+1, cQueen-1, matrix, count);
+    checkDownLeft(rQueen-1, cQueen-1, matrix, count);
+    checkUpRight(rQueen+1, cQueen+1, matrix, count);
+    checkDownRight(rQueen-1, cQueen-1, matrix, count);
 
+    console.log(count);
+}
+
+function checkLeft(row, col, matrix, count) {
+    if (matrix[row][col] === 1 || col < 0) return;
+    count += 1;
+    checkLeft(row, col-1, matrix, count);
+}
+function checkRight(row, col, matrix, count) {
+    if (matrix[row][col] === 1 || col > matrix.length - 1) return;
+    count += 1;
+    checkRight(row, col+1, matrix, count);
+}
+function checkUp(row, col, matrix, count) {
+    if (matrix[row][col] === 1 || row > matrix.length - 1) return;
+    count += 1;
+    checkUp(row+1, col, matrix, count);
+}
+function checkDown(row, col, matrix, count) {
+    if (matrix[row][col] === 1 || row < 0) return;
+    count += 1;
+    checkLeft(row-1, col, matrix, count);
+}
+function checkUpLeft(row, col, matrix, count) {
+    if (matrix[row][col] === 1 || row > matrix.length - 1 || col < 0) return;
+    count += 1;
+    checkUpLeft(row+1, col-1, matrix, count);
+}
+function checkDownLeft(row, col, matrix, count) {
+    if (matrix[row][col] === 1 || row < 0 || col < 0) return;
+    count += 1;
+    checkDownLeft(row-1, col-1, matrix, count);
+}
+function checkUpRight(row, col, matrix, count) {
+    if (matrix[row][col] === 1 || row > matrix.length - 1 || col > matrix.length - 1) return;
+    count += 1;
+    checkUpRight(row+1, col+1, matrix, count);
+}
+function checkDownRight(row, col, matrix, count) {
+    if (matrix[row][col] === 1 || row < 0 || col > matrix.length - 1) return;
+    count += 1;
+    checkDownRight(row-1, col+1, matrix, count);
 }
