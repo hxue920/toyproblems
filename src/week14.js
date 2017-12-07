@@ -2523,5 +2523,34 @@ function main() {
     for(var topic_i = 0; topic_i < n; topic_i++){
        topic[topic_i] = readLine();
     }
+    var current;
+    var max = 0;
+    var num = 0;
+    while (topic.length > 1) {
+        current = topic.pop();
+        for (var i = 0; i < topic.length; i++) {
+            var temp = compare(topic[i], current);
+            if (temp > max) {
+                max = temp;
+                num = 1;
+            } else if (temp === max) {
+                num += 1;
+            }
+        }
+
+    }
+    console.log(max);
+    console.log(num);
+
+    function compare(a, b) {
+        var count = 0;
+        for (var j = 0; j < a.length; j++) {
+            if (parseInt(a[j]) | parseInt(b[j]) === 1) {
+                count += 1;
+            }
+        }
+        return count;
+
+    }
 
 }
