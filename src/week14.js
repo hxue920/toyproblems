@@ -2576,6 +2576,13 @@ function main() {
         var x = parseInt(x_temp[0]);
         var y = parseInt(x_temp[1]);
         var z = parseInt(x_temp[2]);
+        if (x+z < y) {
+            console.log(x*b + (x+z)*w);
+        } else if (y+z < x) {
+            console.log(y*w + (y+z)*b);
+        } else {
+            console.log(x*b + y*w)
+        }
     }
 
 }
