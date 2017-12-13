@@ -2612,7 +2612,16 @@ function readLine() {
 
 function main() {
     var s = readLine();
+    var floor = Math.floor(Math.sqrt(s.length));
+    var row = col = floor;
 
+    while (row * col < s.length) {
+        row += 1;
+        col += 1;
+    }
+    for (var i = 0; i<s.length; i++) {
+
+    }
 }
 
 //Beautiful Triplets
