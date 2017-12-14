@@ -2615,21 +2615,28 @@ function main() {
     var floor = Math.floor(Math.sqrt(s.length));
     var row = col = floor;
     var count = 0;
-    var limit = 0;
     var matrix = [];
+    var result = '';
 
     while (row * col < s.length) {
         row += 1;
         if (row > col) col += 1;
     }
-    for (var i = 0; i<s.length; i++) {
-        while (limit < row) {
-            for (var j = 0; j < col; j++) {
-                temp.push(s[i]);
-            }
+    for (var i = 0; i < row; i++) {
+        var temp = [];
+        for (var j = 0; j < col; j++) {
+            temp.push(s[count]);
+            count += 1;
         }
-
+        matrix.push(temp);
     }
+    for (var k = 0; k < col; k++) {
+        for (var l = 0; l < row; l++) {
+            if (matrix[l][k] !== undefined) result += matrix[l][k];
+        }
+        result += ' ';
+    }
+    console.log(result);
 }
 
 //Beautiful Triplets
