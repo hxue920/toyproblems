@@ -2614,12 +2614,20 @@ function main() {
     var s = readLine();
     var floor = Math.floor(Math.sqrt(s.length));
     var row = col = floor;
+    var count = 0;
+    var limit = 0;
+    var matrix = [];
 
     while (row * col < s.length) {
         row += 1;
-        col += 1;
+        if (row > col) col += 1;
     }
     for (var i = 0; i<s.length; i++) {
+        while (limit < row) {
+            for (var j = 0; j < col; j++) {
+                temp.push(s[i]);
+            }
+        }
 
     }
 }
