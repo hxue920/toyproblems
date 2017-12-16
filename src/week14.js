@@ -2641,7 +2641,23 @@ function main() {
 
 //Beautiful Triplets
 function processData(input) {
-    //Enter your code here
+    var count = 0;
+    var d = input.split('\n')[0][1];
+    var arr = input.split('\n')[1].split(' ');
+    var newArr = arr.map(function(ele) {
+        return parseInt(ele);
+    });
+    var obj = {};
+    arr.forEach(function(ele) {
+        obj[ele] = true;
+    });
+
+    for (var i = 1; i < newArr.length - 2; i++) {
+        if (obj[arr[i] - d] && obj[arr[i] + d]) {
+            count += 1;
+        }
+    }
+    console.log(count);
 }
 
 process.stdin.resume();
