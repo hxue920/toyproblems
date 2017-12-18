@@ -2701,6 +2701,15 @@ function main() {
         var n = parseInt(readLine());
         a = readLine().split(' ');
         a = a.map(Number);
+        var obj = {};
+        for (var i = 0; i < n; i++) {
+            if (obj[m-a[i]]) {
+                console.log(obj[m-a[i]]+' '+(i+1));
+                break;
+            } else {
+                obj[a[i]] = i+1;
+            }
+        }
     }
 
 }
