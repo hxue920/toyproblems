@@ -2713,3 +2713,41 @@ function main() {
     }
 
 }
+
+//BFS: Shortest Reach in a Graph
+function processData(input) {
+
+    var inputs = input.split('\n');
+    var currentLine = 0;
+    function readLine() {
+        return inputs[currentLine++];
+    }
+    var n = parseInt(readLine());
+    for (var i = 0; i < n; i++) {
+        var temp = readLine().split(' ');
+        var v = parseInt(temp[0]);
+        var e = parseInt(temp[1]);
+        var graph = new Graph(v);
+        for (var j = 1; j <= v; j++) {
+            graph.addVertex(v);
+        }
+        for (var k = 1; k <= e; k++) {
+            var tmp = readLine().split(' ');
+            var src = tmp[0];
+            var dist = tmp[1];
+
+        }
+
+    }
+}
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
