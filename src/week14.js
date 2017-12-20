@@ -2715,6 +2715,20 @@ function main() {
 }
 
 //BFS: Shortest Reach in a Graph
+class Graph(numOfVertices) {
+    constructor {
+        this.numOfVertices = numOfVertices;
+        this.adjList = new Map();
+    }
+    addVertex(v) {
+        this.adjList.set(v, []);
+    }
+    addEdge(src, dist) {
+        this.adjList.get(src).push(dist);
+        this.adjList.get(dist).push(src);
+    }
+}
+
 function processData(input) {
 
     var inputs = input.split('\n');
@@ -2735,8 +2749,9 @@ function processData(input) {
             var tmp = readLine().split(' ');
             var src = tmp[0];
             var dist = tmp[1];
-
+            graph.addEdge(src, dist);
         }
+        findDistance(readLine(), graph);
 
     }
 }
