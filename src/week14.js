@@ -2715,19 +2715,51 @@ function main() {
 }
 
 //BFS: Shortest Reach in a Graph
-class Graph(numOfVertices) {
-    constructor {
+class Graph {
+    constructor(numOfVertices) {
         this.numOfVertices = numOfVertices;
         this.adjList = new Map();
     }
     addVertex(v) {
         this.adjList.set(v, []);
     }
-    addEdge(src, dist) {
-        this.adjList.get(src).push(dist);
-        this.adjList.get(dist).push(src);
+    addEdge(src, dest) {
+        this.adjList.get(src).push(dest);
+        this.adjList.get(dest).push(src);
+    }
+    findDistance(start, graph) {
+        var visited = [];
+        var distance = [];
+        for (var i = 1; i <= this.numOfVertices; i++) {
+            visited[i] = false;
+            distance[i] = -1;
+        }
+        var que = [];
+        que.push(start);
+        distance[start] = 0;
+
+        while (que.length) {
+            var curr = que.shift();
+            if (!visited[curr]) {
+                var vertices = this.adjList.get(curr);
+                for (var vertex in vertices) {
+                    que.push(vertex);
+                    distance[vertex] = distance[curr] + 6;
+                }
+            }
+            visited[curr] = true;
+        }
+        var result = '';
+        for (var j = 1; j < distance.length; j++) {
+            if (distance[j] !== 0) {
+                result += distance[j] + ' ';
+            }
+        }
+        console.log(result);
     }
 }
+
+
 
 function processData(input) {
 
@@ -2743,15 +2775,15 @@ function processData(input) {
         var e = parseInt(temp[1]);
         var graph = new Graph(v);
         for (var j = 1; j <= v; j++) {
-            graph.addVertex(v);
+            graph.addVertex(j);
         }
         for (var k = 1; k <= e; k++) {
             var tmp = readLine().split(' ');
-            var src = tmp[0];
-            var dist = tmp[1];
-            graph.addEdge(src, dist);
+            var src = parseInt(tmp[0]);
+            var dest = parseInt(tmp[1]);
+            graph.addEdge(src, dest);
         }
-        findDistance(readLine(), graph);
+        graph.findDistance(readLine(), graph);
 
     }
 }
