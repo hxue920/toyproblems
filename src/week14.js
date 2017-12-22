@@ -2724,8 +2724,11 @@ class Graph {
         this.adjList.set(v, []);
     }
     addEdge(src, dest) {
-        this.adjList.get(src).push(dest);
-        this.adjList.get(dest).push(src);
+        if (!this.adjList.get(src).includes(dest)) {
+            this.adjList.get(src).push(dest);
+            this.adjList.get(dest).push(src);
+        }
+
     }
     findDistance(start, graph) {
         var visited = [];
@@ -2736,18 +2739,20 @@ class Graph {
         }
         var que = [];
         que.push(start);
+        visited[start] = true;
         distance[start] = 0;
 
         while (que.length) {
             var curr = que.shift();
             var vertices = this.adjList.get(curr);
+
             for (var vertex in vertices) {
                 if (!visited[vertices[vertex]]) {
                     que.push(vertices[vertex]);
                     distance[vertices[vertex]] = distance[curr] + 6;
+                    visited[vertices[vertex]] = true;
                 }
             }
-            visited[curr] = true;
         }
         var result = '';
         for (var j = 1; j < distance.length; j++) {
