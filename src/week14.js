@@ -2740,11 +2740,11 @@ class Graph {
 
         while (que.length) {
             var curr = que.shift();
-            if (!visited[curr]) {
-                var vertices = this.adjList.get(curr);
-                for (var vertex in vertices) {
-                    que.push(vertex);
-                    distance[vertex] = distance[curr] + 6;
+            var vertices = this.adjList.get(curr);
+            for (var vertex in vertices) {
+                if (!visited[vertices[vertex]]) {
+                    que.push(vertices[vertex]);
+                    distance[vertices[vertex]] = distance[curr] + 6;
                 }
             }
             visited[curr] = true;
@@ -2783,7 +2783,7 @@ function processData(input) {
             var dest = parseInt(tmp[1]);
             graph.addEdge(src, dest);
         }
-        graph.findDistance(readLine(), graph);
+        graph.findDistance(parseInt(readLine()), graph);
 
     }
 }
