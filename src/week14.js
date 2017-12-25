@@ -2833,5 +2833,9 @@ function main() {
     for(var a_i = 0; a_i < n; a_i++){
        a[a_i] = parseInt(readLine());
     }
-
 }
+
+/*implement minHeap and maxHeap
+use maxHeap to keep all numbers less than running Median
+use minHeap to keep all numbers greater than the running Median
+median is the root when the length of heap is odd and sum of both root if even*/
