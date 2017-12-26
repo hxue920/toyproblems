@@ -2834,7 +2834,35 @@ function main() {
        a[a_i] = parseInt(readLine());
     }
 }
-
+class binaryHeap {
+    constructor(comparator) {
+        this.content = [];
+        this.comparator = comparator;
+    }
+    peek() {
+        if (this.content.length > 0) return this.content[0];
+    }
+    size() {
+        return this.content.length;
+    }
+    add(value) {
+        this.content.push(value);
+        this.bubbleUp(this.content.length-1, value, this.comparator);
+    }
+    bubbleUp(childIdx, value, comparator) {
+        let swap = value;
+        while (childIdx >= 0) {
+            let parentIdx = Math.floor((childIdx - 1) / 2);
+            if (comparator(parentIdx, childIdx)) {
+                this.content[childIdx] = this.content[parentIdx];
+                this.content[parentIdx] = swap;
+                childIdx = parentIdx;
+            } else {
+                break;
+            }
+        }
+    }
+}
 /*implement minHeap and maxHeap
 use maxHeap to keep all numbers less than running Median
 use minHeap to keep all numbers greater than the running Median
