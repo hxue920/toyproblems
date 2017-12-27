@@ -2833,7 +2833,59 @@ function main() {
     for(var a_i = 0; a_i < n; a_i++){
        a[a_i] = parseInt(readLine());
     }
+    solution(a);
 }
+
+function solution(array) {
+    var median = null;
+    var leftMaxHeap = new binaryHeap(function(a, b) {return a < b;});
+    var rightMinHeap = new binaryHeap(function(a, b) {return a > b;});
+    var leftSize, rightSize;
+    for (var i = 0; i < array.length; i++) {
+        leftSize = leftMaxHeap.size();
+        rightSize = rightMinHeap.size();
+        if (leftSize === 0 && rightSize === 0) {
+            median = array[0].toFixed(1);
+            leftMaxHeap.add(array[i]);
+            console.log(median);
+            continue;
+        }
+        if (array[i] < median) {
+            leftMaxHeap.add(array[i]);
+        } else {
+            rightMinHeap.add(array[i]);
+            //console.log(leftMaxHeap.size(), rightMinHeap.size());
+        }
+        leftSize = leftMaxHeap.size();
+        rightSize = rightMinHeap.size();
+        if (Math.abs(leftSize - rightSize) > 1) {
+            rebalance(leftMaxHeap, rightMinHeap);
+        }
+        if (leftSize > rightSize) {
+            median = leftMaxHeap.peek().toFixed(1);;
+        } else if (leftSize < rightSize) {
+            median = rightMinHeap.peek().toFixed(1);
+        } else {
+            median = ((leftMaxHeap.peek() + rightMinHeap.peek()) / 2).toFixed(1);
+
+        }
+        console.log('here', leftMaxHeap.content, rightMinHeap.content, median);
+        //console.log(median);
+    }
+    console.log(leftMaxHeap.content, rightMinHeap.content);
+}
+
+function rebalance(leftHeap, rightHeap) {
+     var element = null;
+     if (leftHeap.size() > rightHeap.size()) {
+         element = leftHeap.poll();
+         rightHeap.add(element);
+     } else {
+         element = rightHeap.poll();
+         leftHeap.add(element);
+     }
+}
+
 class binaryHeap {
     constructor(comparator) {
         this.content = [];
@@ -2849,17 +2901,43 @@ class binaryHeap {
         this.content.push(value);
         this.bubbleUp(this.content.length-1, value, this.comparator);
     }
+    poll() {
+        let result = this.content[0];
+        let end = this.content.pop();
+        this.content[0] = end;
+        this.bubbleDown(0, end, this.comparator);
+        return result;
+    }
     bubbleUp(childIdx, value, comparator) {
         let swap = value;
-        while (childIdx >= 0) {
+        while (childIdx > 0) {
             let parentIdx = Math.floor((childIdx - 1) / 2);
-            if (comparator(parentIdx, childIdx)) {
+            if (comparator(this.content[parentIdx], value)) {
                 this.content[childIdx] = this.content[parentIdx];
                 this.content[parentIdx] = swap;
                 childIdx = parentIdx;
             } else {
                 break;
             }
+        }
+    }
+    bubbleDown(parentIdx, value, comparator) {
+        while (parentIdx*2+1 < this.content.length) {
+            let swap = null;
+            let childIdx1 = parentIdx*2 + 1;
+            let childIdx2 = parentIdx*2 + 2;
+            if (comparator(value, this.content[childIdx1])) {
+                swap = childIdx1;
+            }
+            if (childIdx2 < this.content.length) {
+                if (comparator(swap === null ? value : this.content[childIdx1], this.content[childIdx2])) {
+                    swap = childIdx2;
+                }
+            }
+            if (swap === null) break;
+            this.content[parentIdx] = this.content[swap];
+            this.content[swap] = value;
+            parentIdx = swap;
         }
     }
 }
