@@ -2852,14 +2852,15 @@ function solution(array) {
         }
         if (array[i] < median) {
             leftMaxHeap.add(array[i]);
+            leftSize = leftMaxHeap.size();
         } else {
             rightMinHeap.add(array[i]);
-            //console.log(leftMaxHeap.size(), rightMinHeap.size());
+            rightSize = rightMinHeap.size();
         }
-        leftSize = leftMaxHeap.size();
-        rightSize = rightMinHeap.size();
         if (Math.abs(leftSize - rightSize) > 1) {
             rebalance(leftMaxHeap, rightMinHeap);
+            leftSize = leftMaxHeap.size();
+            rightSize = rightMinHeap.size();
         }
         if (leftSize > rightSize) {
             median = leftMaxHeap.peek().toFixed(1);;
@@ -2867,12 +2868,9 @@ function solution(array) {
             median = rightMinHeap.peek().toFixed(1);
         } else {
             median = ((leftMaxHeap.peek() + rightMinHeap.peek()) / 2).toFixed(1);
-
         }
-        console.log('here', leftMaxHeap.content, rightMinHeap.content, median);
-        //console.log(median);
+        console.log(median);
     }
-    console.log(leftMaxHeap.content, rightMinHeap.content);
 }
 
 function rebalance(leftHeap, rightHeap) {
@@ -2941,7 +2939,3 @@ class binaryHeap {
         }
     }
 }
-/*implement minHeap and maxHeap
-use maxHeap to keep all numbers less than running Median
-use minHeap to keep all numbers greater than the running Median
-median is the root when the length of heap is odd and sum of both root if even*/
