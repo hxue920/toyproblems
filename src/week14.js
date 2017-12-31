@@ -2997,7 +2997,19 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function minimumDistances(a) {
-    // Complete this function
+    var obj = {};
+    var dist = -1;
+    var temp;
+    for (var i = 0; i < a.length; i++) {
+        if (obj[a[i]] !== undefined) {
+            temp = i - obj[a[i]];
+            if (dist === -1 || temp < dist) {
+                dist = temp;
+            }
+        }
+        obj[a[i]] = i;
+    }
+    return dist;
 }
 
 function main() {
