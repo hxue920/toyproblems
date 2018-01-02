@@ -3051,6 +3051,17 @@ function main() {
         var n = parseInt(n_temp[0]);
         var c = parseInt(n_temp[1]);
         var m = parseInt(n_temp[2]);
+        console.log(solution(n, c, m));
     }
 
+}
+function solution(money, cost, trade) {
+    var total = Math.floor(money/cost);
+    var warps = total;
+    while (warps >= trade) {
+        var temp = Math.floor(warps / trade);
+        warps = warps % trade + temp;
+        total += temp;
+    }
+    return total;
 }
