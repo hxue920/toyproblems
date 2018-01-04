@@ -3099,6 +3099,15 @@ function main() {
         var i_temp = readLine().split(' ');
         var i = parseInt(i_temp[0]);
         var j = parseInt(i_temp[1]);
+        var temp = -1;
+        while (i <= j) {
+
+            if (temp === -1 || width[i] < temp) {
+                temp = width[i];
+            }
+            i++;
+        }
+        console.log(temp);
     }
 
 }
