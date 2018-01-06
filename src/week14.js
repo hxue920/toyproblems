@@ -3136,7 +3136,28 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function workbook(n, k, arr) {
-    // Complete this function
+    var page = 1;
+    var special = 0;
+    var limit = 0;
+    for (var i = 0; i < n; i++) {
+        for (var j = 1; j <= arr[i]; j++) {
+            if (limit === k) {
+                page += 1;
+                limit = 0;
+            }
+            if (j === page) {
+                special += 1;
+            }
+            if (j === arr[i]) {
+                page += 1;
+                limit = 0;
+                break;
+            }
+            limit += 1;
+
+        }
+    }
+    return special;
 }
 
 function main() {
