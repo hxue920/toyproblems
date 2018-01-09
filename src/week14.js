@@ -3196,7 +3196,23 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function flatlandSpaceStations(n, c) {
-    // Complete this function
+    var dist = 0;
+    var boundary = 0
+    var cSorted = c.sort(function(a, b) {return a - b;});
+    if (cSorted[0] !== 0) {
+        boundary = cSorted[0];
+    }
+
+    if (cSorted[cSorted.length-1] !== n-1 && boundary < n-1 - cSorted[cSorted.length-1]) {
+        boundary = n-1 - cSorted[cSorted.length-1];
+    }
+    for (var i = 0; i < c.length-1; i++) {
+        var temp = cSorted[i+1] - cSorted[i];
+        if (temp > 1 && temp > dist) {
+            dist = temp;
+        }
+    }
+    return boundary > Math.floor(dist/2) ? boundary : Math.floor(dist/2);
 }
 
 function main() {
