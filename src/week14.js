@@ -2973,6 +2973,20 @@ function main() {
 
 }
 
+class Trie {
+    constructor() {
+        this.root = null;
+    }
+    add(word) {
+        let node = this.root;
+        for (let i = 0; i<word.length; i++) {
+            if (!node.children[word[i]]) {
+                node.children[word[i]] = new TrieNode(word[i]);
+            }
+        }
+    }
+}
+
 //Minimum Distances
 process.stdin.resume();
 process.stdin.setEncoding('ascii');
