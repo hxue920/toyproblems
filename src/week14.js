@@ -3264,7 +3264,19 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function fairRations(B) {
-    // Complete this function
+    var count = 0;
+    var odds = B.filter(function(num) {return num % 2 !== 0;});
+    if (odds.length % 2 === 1) {
+        return "NO";
+    }
+    for (var i = 0; i < B.length-1; i++) {
+        if (B[i] % 2 !== 0) {
+            B[i] += 1;
+            B[i+1] += 1;
+            count += 2;
+        }
+    }
+    return count;
 }
 
 function main() {
