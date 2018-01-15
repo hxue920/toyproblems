@@ -3312,7 +3312,24 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function cavityMap(grid) {
-    // Complete this function
+    var matrix = [];
+    grid.forEach(function(str) {
+        matrix.push(str.split(''));
+    });
+
+    var val;
+    for (var i = 1; i < matrix.length-1; i++) {
+        for (var j = 1; j < matrix[i].length-1; j++) {
+            val = matrix[i][j];
+            if (matrix[i-1][j] < val && matrix[i+1][j] < val && matrix[i][j-1] < val && matrix[i][j+1] < val) {
+                matrix[i][j] = "X";
+            }
+        }
+    }
+    matrix.forEach(function(arr, index) {
+       matrix[index] = arr.join('');
+    })
+    return matrix;
 }
 
 function main() {
