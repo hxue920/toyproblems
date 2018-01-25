@@ -3370,7 +3370,23 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function stones(n, a, b) {
-    // Complete this function
+    var obj = {};
+    var arr = [];
+    function solution(n, a, b, total) {
+        if (n === 1) {
+            if (!obj[total]) {
+                obj[total] = true;
+            }
+            return;
+        }
+        solution(n-1, a, b, total+a);
+        solution(n-1, a, b, total+b);
+    }
+    solution(n, a, b, 0);
+    for (prop in obj) {
+        arr.push(parseInt(prop));
+    }
+    return arr.sort(function(a, b) {return a - b;});
 }
 
 function main() {
