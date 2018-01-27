@@ -3427,7 +3427,16 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function strangeCode(t) {
-    // Complete this function
+    var n = result = 3;
+
+    for (var i = 2; i <= t; i++) {
+        n--;
+        if (n === 0) {
+            result *= 2;
+            n = result;
+        }
+    }
+    return n;
 }
 
 function main() {
