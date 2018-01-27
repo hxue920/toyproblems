@@ -3427,16 +3427,16 @@ function readLine() {
 /////////////// ignore above this line ////////////////////
 
 function strangeCode(t) {
-    var n = result = 3;
+    var n = 3;
+    var reminder = t;
+    while (n < reminder) {
 
-    for (var i = 2; i <= t; i++) {
-        n--;
-        if (n === 0) {
-            result *= 2;
-            n = result;
-        }
+        reminder -= n;
+        n *= 2;
+
     }
-    return n;
+
+    return n - reminder + 1;
 }
 
 function main() {
