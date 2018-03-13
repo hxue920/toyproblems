@@ -3478,3 +3478,20 @@ function main() {
     }
 
 }
+
+//PowerSets
+function powerSet(arr) {
+  let subsets = [];
+  function recurse(set, index) {
+    if (index < 0) {
+      subsets.push(set);
+      return;
+    }
+    let newSet = set.slice();
+    newSet.push(arr[index]);
+    recurse(newSet, index-1);
+    recurse(set, index-1);
+  }
+  recurse([], arr.length-1);
+  return subsets;
+}
