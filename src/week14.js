@@ -3495,3 +3495,20 @@ function powerSet(arr) {
   recurse([], arr.length-1);
   return subsets;
 }
+
+//Coin Change
+function coinChange(coins, change) {
+    if (change === 0) {
+        return 0;
+    }
+    let minNumber = Number.POSITIVE_INFINITY;
+    for (var i = 0; i < coins.length; i++) {
+        if (change - coin[i] >= 0) {
+            let currentMin = coinChange(coins, change-coin[i]);
+            if (currentMin < minNumber) {
+                minNumber = currentMin;
+            }
+        }
+    }
+    return minNumber + 1;
+}
