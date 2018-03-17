@@ -3512,3 +3512,16 @@ function coinChange(coins, change) {
     }
     return minNumber + 1;
 }
+
+//0-1 knapsack
+function knapsack(capacity, n) {
+  let result;
+  if (n === 0 || capacity === 0) {
+    result = 0;
+  } else if (items[n-1][0] > capacity) {
+    result = knapsack(capacity, n-1)
+  } else {
+    result = Math.max(items[n-1][1] + knapsack(capacity-items[n-1][0], n-1), knapsack(capacity, n-1));
+  }
+  return result;
+}
