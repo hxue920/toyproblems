@@ -3525,3 +3525,20 @@ function knapsack(capacity, n) {
   }
   return result;
 }
+
+function knapsackDP(capacity, items) {
+    let cache = [];
+    for (let i = 0; i <= items.length; i++) {
+        cache[i] = new Array(capacity+1);
+    }
+    for (let j = 1; j <= items.length; j++) {
+        for (let k = 0; k <= capacity; k++) {
+            if (items[j-1][0] > k) {
+                cache[j][k] = cache[j-1][k];
+            } else {
+                cache[j][k] = Math.max(cache[j-1][k], cache[j-1][k-items[j-1][0]]+items[j-1][1])
+            }
+        }
+    }
+    return cache[items.length][capacity];
+}
