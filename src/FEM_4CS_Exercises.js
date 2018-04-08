@@ -249,23 +249,73 @@ describe('tests', function() {
 //
 // you will almost certainly need to transform the maze into your own
 // data structure to keep track of all the meta data
-const visited = {};
+const NO_ONE = 0;
+const BY_A = 1;
+const BY_B = 2;
 
 const findShortestPathLength = (maze, [xA, yA], [xB, yB]) => {
-  const copy = maze.slice();
-  const queue = [[xA, yA], [xB, yB]];
-  while (queue.length) {
-    const curr = queue.unshift();
-    if (visited[curr])
-    const neighbors = findNeighbors(curr);
-    neighbors.forEach(neighbor => {
-      queue.push(neighbor);
-    });
+  const visited = maze.map((row, y) => 
+    row.map((val, x) => ({
+      isClosed: val === 1,
+      length: 0,
+      openBy: NO_ONE,
+      x,
+      y
+    }))
+  );
+  visited[yA][xA].openBy = BY_A;
+  visited[yB][xB].openBy = BY_B;
+  
+  let queueA = [visited[yA][xA]];
+  let queueB = [visited[yB][xB]];
+  let distance = 0;
+  
+  while (queueA.length && queueB.length) {
+    distance += 1;
+    const neighborsA = queueA.reduce((acc, curr) => acc.concat(getNeighbors(curr.x, curr.y, visited)), []);
+    queueA = [];
+    for (let i = 0; i < neighborsA.length; i++) {
+      const neighbor = neighborsA[i];
+      if (neighbor.openBy === BY_B) {
+        return distance + neighbor.length;
+      } else if (neighbor.openBy === NO_ONE) {
+        neighbor.openBy = BY_A;
+        neighbor.length = distance;
+        queueA.push(neighbor);
+      }
+    }
+    
+    const neighborsB = queueB.reduce((acc, curr) => acc.concat(getNeighbors(curr.x, curr.y, visited)), []);
+    queueB = [];
+    for (let j = 0; j<neighborsB.length; j++) {
+      const neighbor = neighborsB[j];
+      if (neighbor.openBy === BY_A) {
+        return distance + neighbor.length;
+      } else if (neighbor.openBy === NO_ONE) {
+        neighbor.openBy = BY_B;
+        neighbor.length = distance;
+        queueB.push(neighbor);
+      }
+    }
   }
+  return -1;
 };
 
-const findNeighbors([x, y]) {
-  
+const getNeighbors = (x, y, visited) => {
+  const neighbors = [];
+  if (x-1 >= 0 && !visited[y][x-1].isClosed) {
+    neighbors.push(visited[y][x-1]);
+  }
+  if (x+1 < visited.length && !visited[y][x+1].isClosed) {
+    neighbors.push(visited[y][x+1]);
+  }
+  if (y-1 >= 0 && !visited[y-1][x].isClosed) {
+    neighbors.push(visited[y-1][x]);
+  }
+  if (y+1 < visited[0].length && !visited[y+1][x].isClosed) {
+    neighbors.push(visited[y+1][x]);
+  }
+  return neighbors;
 }
 
 // there is a visualization tool in the completed exercise
