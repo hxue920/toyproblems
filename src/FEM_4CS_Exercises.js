@@ -971,6 +971,17 @@ class Node {
       this.isEnd = true;
     }
   }
+  add(string) {
+    let firstLetter = string[0];
+    
+    for (let i = 0; i < this.children.length; i++) {
+      if (this.children[i].value === firstLetter) {
+        this.children[i].add(string.substr(1));
+        return;
+      }
+    }
+    this.children.push(new Node(string));
+  }
   complete(string) {
     
     return [];
