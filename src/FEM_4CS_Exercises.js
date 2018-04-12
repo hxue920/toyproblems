@@ -957,9 +957,6 @@ describe("mazes", function() {
 // the edge cases are for fun and for this exercise you don't necessarily need to pass them
 
 class Node {
-  // you don't have to use this data structure, this is just how I did it
-  // you'll almost definitely need more methods than this and a constructor
-  // and instance variables
   children = [];
   isEnd = false;
   value = '';
@@ -987,17 +984,24 @@ class Node {
     }
     this.children.push(new Node(string));
   }
+  _complete(searchTerm, builtSoFar, suggestions) {
+    if (suggestions.length >= 3 || (searchTerm && searchTerm[0] !== this.value)) {
+      return suggestions
+    }
+    if (this.isEnd) {
+      suggestions.push(`${builtSoFar}${this.value}`);
+    }
+    this.children.forEach(child => {child._complete(searchTerm.substr(1), `${builtSoFar}${this.value}`, suggestions)});
+    return suggestions;
+  }
   complete(string) {
-    
-    return [];
+    return this.children.map(child => child._complete(string, '', [])).reduce((acc, curr) => acc.concat(curr));
   }
 }
 
 const createTrie = words => {
-  // you do not have to do it this way; this is just how I did it
   const root = new Node("");
-  
-  // more code should go here
+  words.forEach(word => {root.add(word.toLowerCase())});
   
   return root;
 };
