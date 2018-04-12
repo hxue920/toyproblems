@@ -972,11 +972,16 @@ class Node {
     }
   }
   add(string) {
-    let firstLetter = string[0];
-    
+    const firstLetter = string[0];
+    const rest = string.substr(1);
     for (let i = 0; i < this.children.length; i++) {
-      if (this.children[i].value === firstLetter) {
-        this.children[i].add(string.substr(1));
+      const child = this.children[i];
+      if (child.value === firstLetter) {
+        if (rest) {
+          child.add(rest);
+        } else {
+          child.isEnd = true;
+        }        
         return;
       }
     }
